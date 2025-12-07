@@ -1,5 +1,7 @@
 # DeadmauC
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Mau5head_Red.png/200px-Mau5head_Red.png" alt="mau5head" align="right" style="float: right; margin-left: 20px;">
+
 An esoteric programming language based on Deadmau5 references.
 
 In the spirit of [ArnoldC](https://github.com/lhartikk/ArnoldC), DeadmauC replaces traditional programming keywords with Deadmau5 song titles, his various beefs, and things he's gotten sued over.
