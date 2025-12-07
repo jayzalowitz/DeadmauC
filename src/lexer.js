@@ -121,6 +121,12 @@ const TokenType = {
   JAMES_HYPE: 'JAMES_HYPE',                   // Garbage collection (he remixes everything to death)
   JAMES_HYPE_REMIX: 'JAMES_HYPE_REMIX',       // Delete specific variable (remix it out of existence)
 
+  // The ones that "didn't make it" (but now they did)
+  PURRARI: 'PURRARI',                         // Wraps string in nyan cat, gets sued
+  TORONTO_TRAFFIC: 'TORONTO_TRAFFIC',         // Throws after random delay (stuck in traffic)
+  AVICII_TRIBUTE: 'AVICII_TRIBUTE',           // Plays silence, moment of respect
+  PRESS_BUTTON: 'PRESS_BUTTON',               // Press button receive bacon
+
   // Generic
   IDENTIFIER: 'IDENTIFIER',
   WITH: 'WITH',
@@ -276,6 +282,16 @@ class Lexer {
       ['JAMES HYPE THIS', TokenType.JAMES_HYPE],              // garbage collection
       ['LET JAMES HYPE REMIX', TokenType.JAMES_HYPE_REMIX],   // delete variable
       ['JAMES HYPE REMIX', TokenType.JAMES_HYPE_REMIX],       // shorter alias
+
+      // The ones that "didn't make it" (but now they did)
+      ['PURRARI', TokenType.PURRARI],                         // nyan cat wrap, get sued
+      ['NYAN CAT WRAP', TokenType.PURRARI],                   // alias
+      ['TORONTO TRAFFIC', TokenType.TORONTO_TRAFFIC],         // throw after delay
+      ['STUCK IN TRAFFIC', TokenType.TORONTO_TRAFFIC],        // alias
+      ['AVICII TRIBUTE', TokenType.AVICII_TRIBUTE],           // moment of silence
+      ['RIP AVICII', TokenType.AVICII_TRIBUTE],               // alias
+      ['PRESS BUTTON RECEIVE BACON', TokenType.PRESS_BUTTON], // the full thing
+      ['BACON', TokenType.PRESS_BUTTON],                      // short alias
 
       // Booleans and null - the best part (with many aliases)
       ['CUBE V3', TokenType.TRUE],

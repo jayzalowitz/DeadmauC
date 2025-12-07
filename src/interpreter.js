@@ -512,6 +512,97 @@ class Interpreter {
         return null;
       }
 
+      // === THE ONES THAT "DIDN'T MAKE IT" (but now they did) ===
+
+      case NodeType.PURRARI: {
+        // Wraps string in nyan cat, then gets sued by Ferrari
+        const purrariVal = await this.evaluate(node.value, env);
+        const purrariStr = String(purrariVal);
+
+        this.output('*wrapping your value in Nyan Cat...*');
+        await this.sleep(300);
+
+        const nyanWrapped = `🌈😺 ${purrariStr} 😺🌈`;
+        this.output(`Result: ${nyanWrapped}`);
+        await this.sleep(500);
+
+        this.output('');
+        this.output('*Ferrari legal team has entered the chat*');
+        this.output('CEASE AND DESIST: You cannot use cat imagery on our brand');
+        this.output('');
+
+        // Return the boring version after the lawsuit
+        const boringVersion = purrariStr.replace(/[aeiouAEIOU]/g, '*');
+        this.output(`After lawsuit: ${boringVersion}`);
+        this.output('(Ferrari: protecting brand integrity since 1947)');
+
+        return boringVersion;
+      }
+
+      case NodeType.TORONTO_TRAFFIC: {
+        // Throws an error after random delay (stuck in traffic)
+        this.output('*stuck in Toronto traffic*');
+
+        const trafficDelay = Math.floor(Math.random() * 3000) + 1000;
+        const trafficMessages = [
+          'DVP is a parking lot...',
+          '401 is backed up to Mississauga...',
+          'Why is there construction EVERYWHERE...',
+          'This is why I work from home...',
+          'Should have taken the 407 but $40 tolls are robbery...',
+          'Some idiot crashed on the Gardiner AGAIN...',
+        ];
+
+        for (let i = 0; i < 3; i++) {
+          await this.sleep(trafficDelay / 3);
+          this.output(trafficMessages[Math.floor(Math.random() * trafficMessages.length)]);
+        }
+
+        throw new Error('TORONTO TRAFFIC: Gave up. Going home. This city is impossible.');
+      }
+
+      case NodeType.AVICII_TRIBUTE: {
+        // Moment of silence for Avicii
+        const tributeDuration = node.duration ? await this.evaluate(node.duration, env) : 3000;
+
+        this.output('');
+        this.output('◢ ◤');
+        this.output('Tim Bergling (1989-2018)');
+        this.output('');
+        this.output('*moment of silence*');
+
+        await this.sleep(tributeDuration);
+
+        this.output('');
+        this.output('"One day you\'ll leave this world behind, so live a life you will remember."');
+        this.output('— The Nights');
+        this.output('');
+
+        // Returns nothing. Some things are more important than return values.
+        return null;
+      }
+
+      case NodeType.PRESS_BUTTON: {
+        // Press button receive bacon
+        this.output('*pressing button*');
+        await this.sleep(500);
+
+        this.output('...');
+        await this.sleep(300);
+
+        this.output('*receiving bacon*');
+        await this.sleep(200);
+
+        const baconCount = Math.floor(Math.random() * 10) + 1;
+        const bacon = '🥓'.repeat(baconCount);
+
+        this.output(`${bacon}`);
+        this.output(`You received ${baconCount} bacon${baconCount > 1 ? 's' : ''}.`);
+        this.output('This function took way too long to type out.');
+
+        return baconCount;
+      }
+
       default:
         throw new Error(`Unknown node type: ${node.type}. Joel would probably mass-block whoever wrote this.`);
     }

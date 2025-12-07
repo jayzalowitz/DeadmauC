@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
+    "test": "jest",
     "hello": "node src/index.js examples/hello.mau5",
     "fizzbuzz": "node src/index.js examples/fizzbuzz.mau5",
     "fibonacci": "node src/index.js examples/fibonacci.mau5",
@@ -31,5 +32,8 @@
     "type": "git",
     "url": "https://github.com/jayzalowitz/DeadmauC.git"
   },
-  "homepage": "https://jayzalowitz.github.io/DeadmauC/"
+  "homepage": "https://jayzalowitz.github.io/DeadmauC/",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }

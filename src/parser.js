@@ -66,6 +66,12 @@ const NodeType = {
   // Memory management (James Hype beef)
   JAMES_HYPE: 'JamesHype',           // garbage collection
   JAMES_HYPE_REMIX: 'JamesHypeRemix', // delete specific variable
+
+  // The ones that "didn't make it" (but now they did)
+  PURRARI: 'Purrari',                 // nyan cat wrap, get sued
+  TORONTO_TRAFFIC: 'TorontoTraffic',  // throw after delay
+  AVICII_TRIBUTE: 'AviciiTribute',    // moment of silence
+  PRESS_BUTTON: 'PressButton',        // receive bacon
 };
 
 class ASTNode {
@@ -281,6 +287,21 @@ class Parser {
 
       case TokenType.JAMES_HYPE_REMIX:
         return this.parseJamesHypeRemix();
+
+      // The ones that "didn't make it" (but now they did)
+      case TokenType.PURRARI:
+        return this.parsePurrari();
+
+      case TokenType.TORONTO_TRAFFIC:
+        this.advance();
+        return new ASTNode(NodeType.TORONTO_TRAFFIC);
+
+      case TokenType.AVICII_TRIBUTE:
+        return this.parseAviciiTribute();
+
+      case TokenType.PRESS_BUTTON:
+        this.advance();
+        return new ASTNode(NodeType.PRESS_BUTTON);
 
       default:
         this.error(`Unexpected token: ${token.type} (${token.value})`);
@@ -831,6 +852,20 @@ class Parser {
     this.advance();
     const name = this.expect(TokenType.IDENTIFIER).value;
     return new ASTNode(NodeType.JAMES_HYPE_REMIX, { name });
+  }
+
+  // The ones that "didn't make it" (but now they did)
+
+  parsePurrari() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.PURRARI, { value });
+  }
+
+  parseAviciiTribute() {
+    this.advance();
+    const duration = this.match(TokenType.NUMBER, TokenType.IDENTIFIER) ? this.parseExpression() : null;
+    return new ASTNode(NodeType.AVICII_TRIBUTE, { duration });
   }
 }
 
