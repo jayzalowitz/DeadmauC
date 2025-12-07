@@ -1,0 +1,36 @@
+// Fibonacci Sequence in DeadmauC
+// Building up those numbers like building up a drop
+// Recursive like Joel's Twitter beefs
+
+ATTACH THE MAU5HEAD
+
+// Recursive Fibonacci function - as complex as the Cube v3
+THIS IS THE HOOK fibonacci TAKING n
+BREAKDOWN
+    WHATS THE FUSS n QUIETER THAN 2
+    THE BEAT DROPS
+        SEND BACK n
+    WHATEVER
+
+    I REMEMBER a
+    I REMEMBER b
+    a IS NOW DROP fibonacci WITH n MINUS 1
+    b IS NOW DROP fibonacci WITH n MINUS 2
+    SEND BACK a LAYER WITH b
+BUILDUP COMPLETE
+
+// Print the first 15 Fibonacci numbers
+RAISE YOUR WEAPON TRACK "Fibonacci Sequence (like counting Twitter beefs):"
+
+STROBE i FROM 0 TO 14
+FLASH
+    I REMEMBER result
+    result IS NOW DROP fibonacci WITH i
+    SOME CHORDS result
+    SOME CHORDS TRACK " "
+UNFLASH
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Math is CUBE V3, haters are SKRILLEX"
+
+GO TO BED JOEL

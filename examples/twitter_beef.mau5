@@ -1,0 +1,80 @@
+// Twitter Beef Simulator
+// Experience the full Joel Zimmerman social media experience
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== DEADMAU5 TWITTER BEEF SIMULATOR ==="
+RAISE YOUR WEAPON TRACK "Experience authentic 3 AM posting"
+RAISE YOUR WEAPON TRACK ""
+
+// Using the alternative keywords
+LEMME TELL YOU ABOUT enemies
+SETLIST enemies HOLDING TRACK "Skrillex", TRACK "Marshmello", TRACK "David Guetta", TRACK "Paris Hilton", TRACK "Martin Garrix", TRACK "The Chainsmokers"
+
+// TWITTER RANT - ALL CAPS MODE
+TWITTER RANT TRACK "time to address some things"
+
+RAISE YOUR WEAPON TRACK ""
+
+// Let's rate some things using our boolean system
+RAISE YOUR WEAPON TRACK "--- TRUTH TABLE ---"
+
+SOME CHORDS TRACK "CUBE V3 (the stage setup): "
+RAISE YOUR WEAPON CUBE V3
+
+SOME CHORDS TRACK "SKRILLEX: "
+RAISE YOUR WEAPON SKRILLEX
+
+SOME CHORDS TRACK "MARSHMELLO: "
+RAISE YOUR WEAPON MARSHMELLO
+
+SOME CHORDS TRACK "BIG ROOM: "
+RAISE YOUR WEAPON BIG ROOM
+
+SOME CHORDS TRACK "BUTTON PUSHER: "
+RAISE YOUR WEAPON BUTTON PUSHER
+
+SOME CHORDS TRACK "CHIPOTLE: "
+RAISE YOUR WEAPON CHIPOTLE
+
+SOME CHORDS TRACK "COFFEE: "
+RAISE YOUR WEAPON COFFEE
+
+SOME CHORDS TRACK "DJ (am I one?): "
+RAISE YOUR WEAPON DJ
+
+RAISE YOUR WEAPON TRACK ""
+
+// Mass block time
+RAISE YOUR WEAPON TRACK "--- TIME TO MASS BLOCK ---"
+MASS BLOCK enemies
+RAISE YOUR WEAPON TRACK ""
+
+// Professional griefers (stderr)
+RAISE YOUR WEAPON TRACK "--- PROFESSIONAL GRIEFERS MODE ---"
+PROFESSIONAL GRIEFERS TRACK "This goes to stderr because im ANGRY"
+RAISE YOUR WEAPON TRACK ""
+
+// Twitter rant about various topics
+RAISE YOUR WEAPON TRACK "--- LATE NIGHT TWITTER SESSION ---"
+TWITTER RANT TRACK "why does everyone think edm is just button pushing"
+TWITTER RANT TRACK "i spent 260 tons on a cube and people still complain"
+TWITTER RANT TRACK "the cube costs more than your house"
+TWITTER RANT TRACK "also tidal is terrible and i will die on this hill"
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "--- POST-RANT CLARITY ---"
+RAISE YOUR WEAPON TRACK "Maybe I should go to bed."
+RAISE YOUR WEAPON TRACK ""
+
+// Using alternative if syntax
+U MAD ABOUT COFFEE
+THE BEAT DROPS
+    RAISE YOUR WEAPON TRACK "Yes, I am caffeinated."
+    RAISE YOUR WEAPON TRACK "This is not helping my sleep schedule."
+WHATEVER
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Posted at 3:47 AM. /mu/ will tell me to go to bed."
+
+GO TO BED JOEL

@@ -1,0 +1,43 @@
+// Chipotle Run Simulator
+// The most important function in DeadmauC
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== CHIPOTLE RUN SIMULATOR ==="
+RAISE YOUR WEAPON TRACK "A Joel Zimmerman Production"
+RAISE YOUR WEAPON TRACK ""
+
+RAISE YOUR WEAPON TRACK "It's 2 AM."
+RAISE YOUR WEAPON TRACK "You've been streaming for 8 hours."
+RAISE YOUR WEAPON TRACK "The modular synth setup is humming."
+RAISE YOUR WEAPON TRACK "But something is missing..."
+RAISE YOUR WEAPON TRACK ""
+
+I REMEMBER hunger
+hunger IS NOW COFFEE ADDICTION 1
+SOME CHORDS TRACK "Hunger level (with coffee): "
+RAISE YOUR WEAPON hunger
+RAISE YOUR WEAPON TRACK ""
+
+RAISE YOUR WEAPON TRACK "Only one solution..."
+RAISE YOUR WEAPON TRACK ""
+
+// The chipotle run takes forever
+I REMEMBER burrito
+burrito IS NOW CHIPOTLE RUN 500
+
+RAISE YOUR WEAPON TRACK ""
+SOME CHORDS TRACK "Result: "
+RAISE YOUR WEAPON burrito
+RAISE YOUR WEAPON TRACK ""
+
+RAISE YOUR WEAPON TRACK "The eternal struggle continues."
+RAISE YOUR WEAPON TRACK "Maybe try Cthulhu Sleeps to pass the time..."
+RAISE YOUR WEAPON TRACK ""
+
+CTHULHU SLEEPS 1000
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Back to streaming."
+
+GO TO BED JOEL

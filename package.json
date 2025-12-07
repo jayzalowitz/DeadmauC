@@ -1,0 +1,39 @@
+{
+  "name": "deadmauc",
+  "version": "1.0.0",
+  "description": "A programming language inspired by Deadmau5 - where SKRILLEX is false, CUBE V3 is true, and MEOWINGTONS is null",
+  "main": "src/index.js",
+  "bin": {
+    "deadmauc": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "hello": "node src/index.js examples/hello.mau5",
+    "fizzbuzz": "node src/index.js examples/fizzbuzz.mau5",
+    "fibonacci": "node src/index.js examples/fibonacci.mau5",
+    "purrari": "node src/index.js examples/purrari.mau5",
+    "beef": "node src/index.js examples/twitter_beef.mau5",
+    "coffee": "node src/index.js examples/coffee.mau5",
+    "meowingtons": "node src/index.js examples/meowingtons.mau5"
+  },
+  "keywords": [
+    "programming-language",
+    "deadmau5",
+    "esoteric-language",
+    "interpreter",
+    "fun",
+    "esolang",
+    "mau5"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayzalowitz/DeadmauC.git"
+  },
+  "homepage": "https://jayzalowitz.github.io/DeadmauC/",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

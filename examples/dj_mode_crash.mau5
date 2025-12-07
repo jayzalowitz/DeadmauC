@@ -1,0 +1,17 @@
+// DJ MODE - Guaranteed to crash
+// Because IM NOT A DJ
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== DJ MODE DEMONSTRATION ==="
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Let's try to enable DJ mode..."
+RAISE YOUR WEAPON TRACK ""
+
+// This WILL crash. Every time.
+DJ MODE
+
+// You will never see this line
+RAISE YOUR WEAPON TRACK "DJ mode enabled successfully!"
+
+GO TO BED JOEL

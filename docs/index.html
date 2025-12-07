@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeadmauC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d0d0d;
+            --bg-card: #141414;
+            --bg-code: #1a1a1a;
+            --accent: #00d4ff;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --border-color: #252525;
+            --green: #4ade80;
+            --red: #f87171;
+            --purple: #c084fc;
+            --yellow: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* The Cube V3 Background - 260 tons of pure LED energy */
+        .cube-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(192, 132, 252, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+                var(--bg-dark);
+        }
+
+        /* Animated grid - like the LED panels on the cube */
+        .cube-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Floating mau5head images */
+        .mau5head {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            opacity: 0.15;
+            animation: floatMau5 20s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+        }
+
+        .mau5head:nth-of-type(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .mau5head:nth-of-type(2) { top: 30%; left: 85%; animation-delay: -5s; animation-duration: 25s; width: 60px; }
+        .mau5head:nth-of-type(3) { top: 60%; left: 10%; animation-delay: -10s; animation-duration: 22s; width: 100px; }
+        .mau5head:nth-of-type(4) { top: 80%; left: 75%; animation-delay: -15s; animation-duration: 28s; width: 50px; }
+        .mau5head:nth-of-type(5) { top: 45%; left: 90%; animation-delay: -8s; animation-duration: 24s; width: 70px; }
+        .mau5head:nth-of-type(6) { top: 20%; left: 50%; animation-delay: -3s; animation-duration: 30s; width: 90px; }
+        .mau5head:nth-of-type(7) { top: 70%; left: 40%; animation-delay: -12s; animation-duration: 26s; width: 55px; }
+
+        @keyframes floatMau5 {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+            25% { transform: translateY(-30px) rotate(8deg); opacity: 0.25; }
+            50% { transform: translateY(-15px) rotate(-5deg); opacity: 0.12; }
+            75% { transform: translateY(-45px) rotate(5deg); opacity: 0.2; }
+        }
+
+        /* Horizontal LED strips that pulse */
+        .led-strip {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--accent) 20%,
+                var(--accent) 80%,
+                transparent 100%);
+            opacity: 0.15;
+            animation: ledScan 8s linear infinite;
+        }
+
+        .led-strip:nth-of-type(1) { top: 15%; width: 60%; left: 20%; animation-delay: 0s; }
+        .led-strip:nth-of-type(2) { top: 35%; width: 40%; left: 5%; animation-delay: -2s; }
+        .led-strip:nth-of-type(3) { top: 55%; width: 50%; left: 45%; animation-delay: -4s; }
+        .led-strip:nth-of-type(4) { top: 75%; width: 70%; left: 15%; animation-delay: -6s; }
+        .led-strip:nth-of-type(5) { top: 90%; width: 30%; left: 60%; animation-delay: -3s; }
+
+        @keyframes ledScan {
+            0%, 100% { opacity: 0.05; transform: scaleX(0.8); }
+            50% { opacity: 0.2; transform: scaleX(1); }
+        }
+
+        /* Glowing orbs - like stage lights */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: orbPulse 6s ease-in-out infinite;
+        }
+
+        .glow-orb:nth-child(11) {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 212, 255, 0.1);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .glow-orb:nth-child(12) {
+            width: 400px;
+            height: 400px;
+            background: rgba(192, 132, 252, 0.08);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -3s;
+        }
+
+        .glow-orb:nth-child(13) {
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 212, 255, 0.06);
+            top: 50%;
+            left: 50%;
+            animation-delay: -1.5s;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Vertical scan lines - CRT monitor vibes */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Waveform at the bottom */
+        .waveform {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+
+        .waveform::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 8px,
+                    var(--accent) 8px,
+                    var(--accent) 10px
+                );
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q5 5 10 10 T20 10 T30 10 T40 10 T50 10 T60 10 T70 10 T80 10 T90 10 T100 10 V20 H0Z' fill='white'/%3E%3C/svg%3E");
+            mask-size: 100px 100%;
+            mask-repeat: repeat-x;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q5 5 10 10 T20 10 T30 10 T40 10 T50 10 T60 10 T70 10 T80 10 T90 10 T100 10 V20 H0Z' fill='white'/%3E%3C/svg%3E");
+            -webkit-mask-size: 100px 100%;
+            -webkit-mask-repeat: repeat-x;
+            animation: waveScroll 3s linear infinite;
+        }
+
+        @keyframes waveScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .floating-mau5head {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 120px;
+            height: auto;
+            animation: floatLogo 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(3deg); }
+            50% { transform: translateY(-5px) rotate(-2deg); }
+            75% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin: 28px 0 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 48px 0;
+        }
+
+        pre {
+            background: var(--bg-code);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 24px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .kw { color: var(--accent); }
+        .str { color: var(--green); }
+        .cmt { color: var(--text-muted); }
+        .stupid { color: var(--yellow); }
+
+        .types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .type-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .type-card code {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .type-card .val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .type-card .why {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .type-card.t code { color: var(--green); }
+        .type-card.f code { color: var(--red); }
+        .type-card.n code { color: var(--purple); }
+
+        .aliases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .alias-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .alias-item.t { border-left: 3px solid var(--green); }
+        .alias-item.f { border-left: 3px solid var(--red); }
+        .alias-item.n { border-left: 3px solid var(--purple); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        td:nth-child(2) {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .stupid-table td:first-child {
+            color: var(--yellow);
+        }
+
+        .context-list {
+            list-style: none;
+        }
+
+        .context-list li {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .context-list strong {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        .didnt-make-it, .did-make-it {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .did-make-it {
+            border-left: 3px solid var(--yellow);
+        }
+
+        .didnt-make-it ul, .did-make-it ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .didnt-make-it li, .did-make-it li {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .didnt-make-it li:last-child, .did-make-it li:last-child {
+            margin-bottom: 0;
+        }
+
+        .didnt-make-it code, .did-make-it code {
+            color: var(--text-muted);
+        }
+
+        .did-make-it code {
+            color: var(--yellow);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .types { grid-template-columns: 1fr; }
+            .aliases-grid { grid-template-columns: 1fr 1fr; }
+            pre { padding: 16px; font-size: 0.8rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 10px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- The Cube V3 Background Experience -->
+    <div class="cube-background">
+        <!-- Floating mau5heads -->
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+        <img src="mau5head.png" alt="" class="mau5head">
+
+        <!-- LED strips -->
+        <div class="led-strip"></div>
+        <div class="led-strip"></div>
+        <div class="led-strip"></div>
+        <div class="led-strip"></div>
+        <div class="led-strip"></div>
+
+        <!-- Glowing orbs -->
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+
+        <!-- CRT scanlines -->
+        <div class="scanline"></div>
+
+        <!-- Audio waveform -->
+        <div class="waveform"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="mau5head.png" alt="mau5head" class="floating-mau5head">
+            <h1>DeadmauC</h1>
+            <p class="subtitle">
+                An esoteric programming language based on Deadmau5 references. Song titles, beefs, things he's gotten sued over, and some features that definitely shouldn't exist.
+            </p>
+            <div class="links">
+                <a href="https://github.com/jayzalowitz/DeadmauC">GitHub</a>
+                <a href="https://www.npmjs.com/package/deadmauc">npm</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Hello World</h2>
+            <pre><code><span class="kw">ATTACH THE MAU5HEAD</span>
+
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"Hello, World!"</span>
+
+<span class="kw">GO TO BED JOEL</span></code></pre>
+            <pre><code>git clone https://github.com/jayzalowitz/DeadmauC.git
+cd DeadmauC
+node src/index.js examples/hello.mau5</code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>The Important Part</h2>
+            <div class="types">
+                <div class="type-card t">
+                    <code>CUBE V3</code>
+                    <div class="val">= true</div>
+                    <div class="why">His stage setup that cost more than your house</div>
+                </div>
+                <div class="type-card f">
+                    <code>SKRILLEX</code>
+                    <div class="val">= false</div>
+                    <div class="why">Self-explanatory</div>
+                </div>
+                <div class="type-card n">
+                    <code>MEOWINGTONS</code>
+                    <div class="val">= null</div>
+                    <div class="why">RIP Professor Meowingtons PhD (2007-2023)</div>
+                </div>
+            </div>
+
+            <h3>Boolean Aliases (because one true/false is never enough)</h3>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--green);">Things that are true:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item t">CUBE V3</div>
+                <div class="alias-item t">THE CUBE</div>
+                <div class="alias-item t">TESTPILOT</div>
+                <div class="alias-item t">PROGRESSIVE HOUSE</div>
+                <div class="alias-item t">CHIPOTLE</div>
+                <div class="alias-item t">COFFEE</div>
+                <div class="alias-item t">THE MAU5HEAD</div>
+                <div class="alias-item t">TORONTO</div>
+            </div>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--red);">Things that are false:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item f">SKRILLEX</div>
+                <div class="alias-item f">MARSHMELLO</div>
+                <div class="alias-item f">BIG ROOM</div>
+                <div class="alias-item f">ANIMALS BY MARTIN GARRIX</div>
+                <div class="alias-item f">BUTTON PUSHER</div>
+                <div class="alias-item f">MAINSTREAM</div>
+                <div class="alias-item f">DJ</div>
+            </div>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--purple);">Things that are null:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item n">MEOWINGTONS</div>
+                <div class="alias-item n">PROFESSOR MEOWINGTONS</div>
+                <div class="alias-item n">RIP MEOWINGTONS</div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Variables & Output</h2>
+            <pre><code><span class="kw">I REMEMBER</span> x                       <span class="cmt">// declare (song)</span>
+<span class="kw">LEMME TELL YOU ABOUT</span> y              <span class="cmt">// alternative (rambling mode)</span>
+x <span class="kw">IS NOW</span> 42                          <span class="cmt">// assign</span>
+x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"hello"</span>              <span class="cmt">// strings</span>
+
+<span class="kw">RAISE YOUR WEAPON</span> x                  <span class="cmt">// print with newline</span>
+<span class="kw">SOME CHORDS</span> x                        <span class="cmt">// print without newline</span>
+<span class="kw">PROFESSIONAL GRIEFERS</span> x              <span class="cmt">// print to stderr (angry mode)</span>
+<span class="kw">TWITTER RANT</span> x                       <span class="cmt">// ALL CAPS PRINT (3 AM mode)</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Conditionals</h2>
+            <pre><code><span class="kw">WHATS THE FUSS</span> x <span class="kw">LOUDER THAN</span> 10     <span class="cmt">// or U MAD ABOUT</span>
+<span class="kw">THE BEAT DROPS</span>
+    <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"loud"</span>
+<span class="kw">FML</span>                                    <span class="cmt">// else (song)</span>
+    <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"quiet"</span>
+<span class="kw">WHATEVER</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Loops</h2>
+            <h3>For Loop</h3>
+            <pre><code><span class="kw">STROBE</span> i <span class="kw">FROM</span> 1 <span class="kw">TO</span> 10      <span class="cmt">// song</span>
+<span class="kw">FLASH</span>
+    <span class="kw">RAISE YOUR WEAPON</span> i
+<span class="kw">UNFLASH</span></code></pre>
+            <h3>While Loop</h3>
+            <pre><code><span class="kw">WHILE ONE IS LESS THAN TWO</span> x <span class="kw">QUIETER THAN</span> 100   <span class="cmt">// album title</span>
+<span class="kw">KEEP GOING</span>                                        <span class="cmt">// or KEEP STREAMING</span>
+    <span class="kw">PUMP THIS</span> x
+<span class="kw">IM DONE</span>                                           <span class="cmt">// or IM BORED</span></code></pre>
+            <h3>The Inescapable Loop</h3>
+            <pre><code><span class="stupid">AT 128 BPM</span> beat      <span class="cmt">// runs EXACTLY 128 times. no escape.</span>
+<span class="kw">FLASH</span>
+    <span class="kw">RAISE YOUR WEAPON</span> beat
+    <span class="kw">LAWYER UP MICKEY</span>  <span class="cmt">// this break is IGNORED. the BPM is 128.</span>
+<span class="kw">UNFLASH</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Functions</h2>
+            <pre><code><span class="kw">THIS IS THE HOOK</span> add <span class="kw">TAKING</span> a, b   <span class="cmt">// or HERES THE DROP</span>
+<span class="kw">BREAKDOWN</span>
+    <span class="kw">SEND BACK</span> a <span class="kw">LAYER WITH</span> b
+<span class="kw">BUILDUP COMPLETE</span>
+
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">DROP</span> add <span class="kw">WITH</span> 2, 3  <span class="cmt">// 5</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Stupid Built-in Functions</h2>
+            <p>Features that serve absolutely no purpose. As intended.</p>
+
+            <h3>Time Wasters</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>PROGRESSIVE BUILDUP 500</td><td>prints "building tension..." repeatedly</td><td>prog house experience</td></tr>
+                    <tr><td>WAIT FOR THE DROP</td><td>waits random time, never drops</td><td>troll tracks</td></tr>
+                    <tr><td>CHIPOTLE RUN 1000</td><td>takes forever, returns "out of guac"</td><td>his food obsession</td></tr>
+                    <tr><td>CTHULHU SLEEPS 1000</td><td>sleep, but ominously</td><td>song reference</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Opposite Day Functions</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>NICE MEME FLIP value</td><td>returns opposite boolean + sarcasm</td><td>his catchphrase</td></tr>
+                    <tr><td>DJ MODE</td><td><strong>always crashes</strong></td><td>IM NOT A DJ</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Completely Useless Functions</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>GRAMMY SPEECH</td><td>prints "We all hit play." and exits</td><td>the controversial quote</td></tr>
+                    <tr><td>ROB FORD COUNT</td><td>returns "1 2 3 4"</td><td>Coffee Runs episode</td></tr>
+                    <tr><td>FERRARI LAWSUIT value</td><td>strips all fun words from string</td><td>Purrari incident</td></tr>
+                    <tr><td>MASS BLOCK array</td><td>removes random elements</td><td>Twitter rampage hobby</td></tr>
+                    <tr><td>TESTPILOT MODE value</td><td>returns value/2, says "dark and minimal"</td><td>his techno alias</td></tr>
+                    <tr><td>HR 8938 CEPHEI value</td><td>evaluates then discards to space</td><td>song about a star</td></tr>
+                    <tr><td>HAXED BY ANONYMOUS</td><td>1% chance to crash</td><td>early hacker vibes</td></tr>
+                    <tr><td>MONOPHOBIA CHECK</td><td>crashes if only 1 variable exists</td><td>fear of being alone</td></tr>
+                    <tr><td>THE VELDT FEELS value</td><td>adds emotional suffix</td><td>the feels</td></tr>
+                    <tr><td>PLAY ANIMALS</td><td>always returns "ANIMALS"</td><td>Martin Garrix diss</td></tr>
+                    <tr><td>RANDOM ALBUM TITLE</td><td>returns random deadmau5 album</td><td>self-explanatory</td></tr>
+                    <tr><td>COFFEE ADDICTION value</td><td>multiplies by 420</td><td>caffeine math</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Memory Management (The James Hype Beef)</h3>
+            <p style="margin-bottom: 12px;">Because nothing says "garbage collection" like a DJ who destroys everything he touches.</p>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>JAMES HYPE THIS</td><td>clears ALL variables and functions</td><td>he remixes everything to death</td></tr>
+                    <tr><td>JAMES HYPE REMIX varname</td><td>deletes specific variable</td><td>targeted destruction</td></tr>
+                </tbody>
+            </table>
+            <pre><code><span class="kw">ATTACH THE MAU5HEAD</span>
+
+<span class="cmt">// Create a beautiful, carefully crafted track</span>
+<span class="kw">I REMEMBER</span> originalVibe
+<span class="kw">I REMEMBER</span> subtlety
+<span class="kw">I REMEMBER</span> dynamics
+<span class="kw">I REMEMBER</span> artisticIntegrity
+
+originalVibe <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"deep progressive soundscape"</span>
+subtlety <span class="kw">IS NOW</span> 100
+dynamics <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"carefully layered"</span>
+artisticIntegrity <span class="kw">IS NOW</span> <span class="kw">CUBE V3</span>  <span class="cmt">// true, obviously</span>
+
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"Before James Hype:"</span>
+<span class="kw">RAISE YOUR WEAPON</span> originalVibe
+<span class="kw">RAISE YOUR WEAPON</span> subtlety
+<span class="kw">RAISE YOUR WEAPON</span> dynamics
+
+<span class="cmt">// Oh no. Here he comes.</span>
+<span class="cmt">// He's got that "festival-ready" look in his eyes.</span>
+<span class="cmt">// RUN.</span>
+
+<span class="stupid">JAMES HYPE THIS</span>
+
+<span class="cmt">// Output:</span>
+<span class="cmt">// *James Hype has entered the chat*</span>
+<span class="cmt">// Remixing 4 variables and 0 functions...</span>
+<span class="cmt">// Adding unnecessary drops...</span>
+<span class="cmt">// Speeding up the BPM for no reason...</span>
+<span class="cmt">// Removing all the good parts...</span>
+<span class="cmt">// Making it "festival-ready"...</span>
+<span class="cmt">// Destroying the original vibe...</span>
+<span class="cmt">//</span>
+<span class="cmt">// *James Hype Remix Complete*</span>
+<span class="cmt">// Garbage collected: 4 variables, 0 functions</span>
+<span class="cmt">// The original is unrecognizable. As intended.</span>
+<span class="cmt">//</span>
+<span class="cmt">// Joel would tweet about this.</span>
+
+<span class="cmt">// Try to access your beautiful variables now:</span>
+<span class="cmt">// RAISE YOUR WEAPON originalVibe</span>
+<span class="cmt">// ERROR: Variable 'originalVibe' not found.</span>
+<span class="cmt">//        It's probably stuck in Toronto traffic.</span>
+
+<span class="cmt">// They're gone. All of them.</span>
+<span class="cmt">// Your subtlety? Remixed into oblivion.</span>
+<span class="cmt">// Your dynamics? Festival-ready garbage.</span>
+<span class="cmt">// Your artistic integrity? Never stood a chance.</span>
+
+<span class="kw">GO TO BED JOEL</span></code></pre>
+
+            <p style="margin-top: 16px; color: var(--text-muted);">For targeted destruction, use <code style="color: var(--yellow);">JAMES HYPE REMIX varname</code>:</p>
+
+            <pre><code><span class="cmt">// When you just want to destroy ONE specific thing</span>
+<span class="kw">I REMEMBER</span> myBestWork
+myBestWork <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"Strobe (10 minute version)"</span>
+
+<span class="cmt">// James Hype: "I can fix that"</span>
+<span class="stupid">JAMES HYPE REMIX</span> myBestWork
+
+<span class="cmt">// Output:</span>
+<span class="cmt">// *James Hype remixing 'myBestWork'*</span>
+<span class="cmt">// Original value: Strobe (10 minute version)</span>
+<span class="cmt">// Adding drops... removing soul... making it generic...</span>
+<span class="cmt">// 'myBestWork' has been remixed into oblivion.</span>
+<span class="cmt">// It's gone. Forever. Like musical integrity.</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Twitter Beef Simulator</h2>
+            <pre><code><span class="kw">ATTACH THE MAU5HEAD</span>
+
+<span class="cmt">// Rate things using our boolean system</span>
+<span class="kw">SOME CHORDS</span> <span class="kw">TRACK</span> <span class="str">"CUBE V3: "</span>
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">CUBE V3</span>           <span class="cmt">// true</span>
+
+<span class="kw">SOME CHORDS</span> <span class="kw">TRACK</span> <span class="str">"SKRILLEX: "</span>
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">SKRILLEX</span>          <span class="cmt">// false</span>
+
+<span class="cmt">// Twitter rant mode (ALL CAPS)</span>
+<span class="kw">TWITTER RANT</span> <span class="kw">TRACK</span> <span class="str">"why does everyone think edm is button pushing"</span>
+
+<span class="cmt">// Mass block your enemies</span>
+<span class="kw">SETLIST</span> enemies <span class="kw">HOLDING</span> <span class="kw">TRACK</span> <span class="str">"hater1"</span>, <span class="kw">TRACK</span> <span class="str">"hater2"</span>
+<span class="stupid">MASS BLOCK</span> enemies                   <span class="cmt">// randomly removes elements</span>
+
+<span class="kw">GO TO BED JOEL</span></code></pre>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Keywords</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>DeadmauC</th>
+                        <th>Meaning</th>
+                        <th>Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ATTACH THE MAU5HEAD</td><td>main()</td><td>the helmet</td></tr>
+                    <tr><td>GO TO BED JOEL</td><td>end</td><td>/mu/ meme</td></tr>
+                    <tr><td>I REMEMBER</td><td>var</td><td>song</td></tr>
+                    <tr><td>RAISE YOUR WEAPON</td><td>print</td><td>song</td></tr>
+                    <tr><td>TWITTER RANT</td><td>print (ALL CAPS)</td><td>3 AM behavior</td></tr>
+                    <tr><td>PROFESSIONAL GRIEFERS</td><td>print to stderr</td><td>song</td></tr>
+                    <tr><td>LAYER WITH</td><td>+</td><td>audio term</td></tr>
+                    <tr><td>SIDECHAIN</td><td>*</td><td>production technique</td></tr>
+                    <tr><td>LOUDER THAN / MORE FOLLOWERS THAN</td><td>></td><td>twitter</td></tr>
+                    <tr><td>QUIETER THAN / LESS BEEF THAN</td><td><</td><td>feuds</td></tr>
+                    <tr><td>WHATS THE FUSS / U MAD ABOUT</td><td>if</td><td></td></tr>
+                    <tr><td>FML</td><td>else</td><td>song</td></tr>
+                    <tr><td>WHILE ONE IS LESS THAN TWO</td><td>while</td><td>album title</td></tr>
+                    <tr><td>AT 128 BPM</td><td>unbreakable loop (128x)</td><td>standard EDM tempo</td></tr>
+                    <tr><td>LAWYER UP MICKEY / CEASE AND DESIST</td><td>break</td><td>Disney lawsuit</td></tr>
+                    <tr><td>DROP</td><td>call function</td><td></td></tr>
+                    <tr><td>U MAD BRO / BLOCK EVERYONE</td><td>throw</td><td>catchphrase</td></tr>
+                    <tr><td>DJ MODE</td><td>crash</td><td>IM NOT A DJ</td></tr>
+                    <tr><td>CUBE V3</td><td>true</td><td>stage setup</td></tr>
+                    <tr><td>SKRILLEX</td><td>false</td><td>beef</td></tr>
+                    <tr><td>MEOWINGTONS</td><td>null</td><td>his cat (RIP)</td></tr>
+                    <tr><td>JAMES HYPE THIS</td><td>garbage collection</td><td>British DJ beef</td></tr>
+                    <tr><td>JAMES HYPE REMIX</td><td>delete variable</td><td>targeted remix</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Context for the Confused</h2>
+            <ul class="context-list">
+                <li><strong>CUBE V3</strong> — His stage setup. 260 tons, 600+ LED panels. Cost more than your house. Hence, <code>true</code>.</li>
+                <li><strong>SKRILLEX</strong> — They had beef. Hence, <code>false</code>.</li>
+                <li><strong>MEOWINGTONS</strong> — Professor Meowingtons PhD, his cat (2007-2023). Hence, <code>null</code>.</li>
+                <li><strong>LAWYER UP MICKEY</strong> — What Joel said when Disney tried to block his mau5head trademark. He won.</li>
+                <li><strong>GO TO BED JOEL</strong> — /mu/ users would spam this during his 3 AM posting sessions. He did not go to bed.</li>
+                <li><strong>WHILE ONE IS LESS THAN TWO</strong> — His 2014 album was literally called <code>while(1&lt;2)</code>.</li>
+                <li><strong>Coffee Runs</strong> — YouTube series where he drives people in sports cars. Featured Toronto's crack-smoking mayor Rob Ford.</li>
+                <li><strong>U MAD BRO</strong> — His catchphrase. He wore it on a Grammys shirt with Skrillex's phone number.</li>
+                <li><strong>AT 128 BPM</strong> — Standard EDM tempo. Non-negotiable. The loop cannot be broken.</li>
+                <li><strong>HR 8938 CEPHEI</strong> — A real star. He wrote a song about it. Values sent there go to space.</li>
+                <li><strong>JAMES HYPE</strong> — British DJ known for remixing everything. Deadmau5 has publicly dissed his style. Hence, garbage collection.</li>
+                <li><strong>PURRARI</strong> — His Ferrari 458 wrapped in Nyan Cat. Ferrari sued him for trademark infringement. The wrap was amazing. The lawsuit was not.</li>
+                <li><strong>TORONTO TRAFFIC</strong> — Joel lives in Toronto and complains about the traffic constantly. The DVP and 401 are parking lots. This is known.</li>
+                <li><strong>AVICII</strong> — Tim Bergling (1989-2018). Fellow producer and friend. The tribute is a moment of silence. ◢ ◤</li>
+                <li><strong>PRESS BUTTON RECEIVE BACON</strong> — An old internet meme. Joel probably posted it at 3 AM. We added it because why not.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Things That Made It In (But Shouldn't Have)</h2>
+            <div class="did-make-it">
+                <ul>
+                    <li><code>DJ MODE</code> — Always crashes. Because IM NOT A DJ.</li>
+                    <li><code>MASS BLOCK</code> — Randomly removes array elements. Like his Twitter.</li>
+                    <li><code>CHIPOTLE RUN</code> — Takes forever, returns "out of guac". Accurate simulation.</li>
+                    <li><code>FERRARI LAWSUIT</code> — Removes all fun from strings. Thanks, Ferrari legal.</li>
+                    <li><code>HAXED BY ANONYMOUS</code> — 1% crash chance. You feel lucky?</li>
+                    <li><code>AT 128 BPM</code> — A loop that ignores break statements. The BPM is law.</li>
+                    <li><code>JAMES HYPE THIS</code> — Garbage collection with dramatic commentary. The remix nobody asked for.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Ones That "Didn't Make It" (But Now They Did)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">Features that were too stupid, too long, too sad, or too lawsuit-prone. We added them anyway.</p>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why It Almost Didn't Make It</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>PURRARI value</td><td>wraps in nyan cat, then Ferrari sues you</td><td>His Ferrari 458 wrapped in Nyan Cat. Ferrari sued him.</td></tr>
+                    <tr><td>NYAN CAT WRAP value</td><td>alias for PURRARI</td><td>Same energy, same lawsuit.</td></tr>
+                    <tr><td>TORONTO TRAFFIC</td><td><strong>always throws</strong> after random delay</td><td>He complains about this constantly. DVP is a parking lot.</td></tr>
+                    <tr><td>STUCK IN TRAFFIC</td><td>alias for TORONTO TRAFFIC</td><td>Same highway, same rage.</td></tr>
+                    <tr><td>AVICII TRIBUTE 3000</td><td>moment of silence, optional duration</td><td>Too sad. But important. ◢ ◤</td></tr>
+                    <tr><td>RIP AVICII</td><td>alias for AVICII TRIBUTE</td><td>Tim Bergling (1989-2018)</td></tr>
+                    <tr><td>PRESS BUTTON RECEIVE BACON</td><td>returns random bacon count 🥓</td><td>Too long. Added anyway. You're welcome.</td></tr>
+                    <tr><td>BACON</td><td>short alias for PRESS BUTTON RECEIVE BACON</td><td>For people with things to do.</td></tr>
+                </tbody>
+            </table>
+            <pre><code><span class="cmt">// The PURRARI experience</span>
+<span class="kw">I REMEMBER</span> myFerrari
+myFerrari <span class="kw">IS NOW</span> <span class="stupid">PURRARI</span> <span class="kw">TRACK</span> <span class="str">"458 Italia"</span>
+<span class="cmt">// Output: 🌈😺 458 Italia 😺🌈</span>
+<span class="cmt">// Then: *Ferrari legal team has entered the chat*</span>
+<span class="cmt">// After lawsuit: 458 *t*l**</span>
+
+<span class="cmt">// Toronto Traffic (this WILL crash your program)</span>
+<span class="stupid">TORONTO TRAFFIC</span>
+<span class="cmt">// *stuck in Toronto traffic*</span>
+<span class="cmt">// DVP is a parking lot...</span>
+<span class="cmt">// 401 is backed up to Mississauga...</span>
+<span class="cmt">// THROW: TORONTO TRAFFIC: Gave up. Going home.</span>
+
+<span class="cmt">// Avicii Tribute - a moment of respect</span>
+<span class="stupid">AVICII TRIBUTE</span> 5000   <span class="cmt">// 5 seconds of silence</span>
+<span class="cmt">// ◢ ◤</span>
+<span class="cmt">// Tim Bergling (1989-2018)</span>
+<span class="cmt">// "One day you'll leave this world behind..."</span>
+
+<span class="cmt">// The bacon function that was too long</span>
+<span class="kw">I REMEMBER</span> breakfast
+breakfast <span class="kw">IS NOW</span> <span class="stupid">PRESS BUTTON RECEIVE BACON</span>
+<span class="cmt">// 🥓🥓🥓🥓🥓</span>
+<span class="cmt">// You received 5 bacons.</span></code></pre>
+        </section>
+
+        <footer>
+            <p>Not affiliated with Joel Zimmerman or mau5trap.</p>
+            <p>He would probably mass-block everyone involved in this project on Twitter.</p>
+            <p style="margin-top: 12px;">If you're reading this Joel: Sorry. Also, hire us to build the Cube v4 software.</p>
+            <p style="margin-top: 20px;">File extension: <code>.mau5</code></p>
+        </footer>
+    </div>
+</body>
+</html>

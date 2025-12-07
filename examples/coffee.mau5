@@ -1,0 +1,56 @@
+// Coffee Run Simulator in DeadmauC
+// Based on the legendary YouTube series
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== COFFEE RUN WITH DEADMAU5 ==="
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "* gets in Purrari *"
+RAISE YOUR WEAPON TRACK "* guest gets nervous *"
+RAISE YOUR WEAPON TRACK ""
+
+I REMEMBER caffeine_level
+I REMEMBER hot_takes
+I REMEMBER guest
+
+caffeine_level IS NOW 0
+hot_takes IS NOW 0
+guest IS NOW TRACK "Shroud"
+
+RAISE YOUR WEAPON TRACK "Today's guest: Shroud"
+RAISE YOUR WEAPON TRACK ""
+FAXING BERLIN 500
+
+// The coffee run loop
+WHILE ONE IS LESS THAN TWO caffeine_level QUIETER THAN 5
+KEEP GOING
+    PUMP THIS caffeine_level
+    PUMP THIS hot_takes
+
+    SOME CHORDS TRACK "Caffeine level: "
+    RAISE YOUR WEAPON caffeine_level
+
+    WHATS THE FUSS caffeine_level SAME BPM AS 2
+    THE BEAT DROPS
+        RAISE YOUR WEAPON TRACK "Joel: 'So anyway, mainstream EDM is...'"
+        PUMP THIS hot_takes
+    WHATEVER
+
+    WHATS THE FUSS caffeine_level SAME BPM AS 4
+    THE BEAT DROPS
+        RAISE YOUR WEAPON TRACK "Joel: 'Toronto traffic is absolute garbage'"
+        PUMP THIS hot_takes
+    WHATEVER
+
+    FAXING BERLIN 300
+IM DONE
+
+RAISE YOUR WEAPON TRACK ""
+SOME CHORDS TRACK "Hot takes delivered: "
+RAISE YOUR WEAPON hot_takes
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "* drops guest off *"
+RAISE YOUR WEAPON TRACK "* tweets something spicy *"
+RAISE YOUR WEAPON TRACK "* goes back to the studio *"
+
+GO TO BED JOEL

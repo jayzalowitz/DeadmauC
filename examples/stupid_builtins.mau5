@@ -1,0 +1,107 @@
+// Demonstration of DeadmauC's Stupid Built-in Functions
+// Because why have useful features when you can have these?
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== STUPID BUILT-IN FUNCTIONS DEMO ==="
+RAISE YOUR WEAPON TRACK ""
+
+// GRAMMY SPEECH - prints the infamous quote
+RAISE YOUR WEAPON TRACK "1. GRAMMY SPEECH - The controversial moment"
+GRAMMY SPEECH
+RAISE YOUR WEAPON TRACK ""
+
+// ROB FORD COUNT - returns "1 2 3 4"
+RAISE YOUR WEAPON TRACK "2. ROB FORD COUNT - From the Coffee Runs episode"
+I REMEMBER fordCount
+fordCount IS NOW ROB FORD COUNT
+SOME CHORDS TRACK "Ford counted: "
+RAISE YOUR WEAPON fordCount
+RAISE YOUR WEAPON TRACK ""
+
+// RANDOM ALBUM TITLE - get a random deadmau5 album
+RAISE YOUR WEAPON TRACK "3. RANDOM ALBUM TITLE - Which album should you listen to?"
+I REMEMBER album1
+I REMEMBER album2
+I REMEMBER album3
+album1 IS NOW RANDOM ALBUM TITLE
+album2 IS NOW RANDOM ALBUM TITLE
+album3 IS NOW RANDOM ALBUM TITLE
+SOME CHORDS TRACK "Suggested albums: "
+RAISE YOUR WEAPON album1
+RAISE YOUR WEAPON album2
+RAISE YOUR WEAPON album3
+RAISE YOUR WEAPON TRACK ""
+
+// THE VELDT FEELS - adds emotional suffix
+RAISE YOUR WEAPON TRACK "4. THE VELDT FEELS - Making things emotional"
+I REMEMBER emotional
+emotional IS NOW THE VELDT FEELS TRACK "Hello world"
+RAISE YOUR WEAPON emotional
+RAISE YOUR WEAPON TRACK ""
+
+// COFFEE ADDICTION - multiply by 420
+RAISE YOUR WEAPON TRACK "5. COFFEE ADDICTION - Caffeine math"
+I REMEMBER caffeinated
+caffeinated IS NOW COFFEE ADDICTION 10
+SOME CHORDS TRACK "10 with coffee addiction: "
+RAISE YOUR WEAPON caffeinated
+RAISE YOUR WEAPON TRACK ""
+
+// TESTPILOT MODE - halves the value, goes minimal
+RAISE YOUR WEAPON TRACK "6. TESTPILOT MODE - Switch to techno"
+I REMEMBER techno
+techno IS NOW TESTPILOT MODE 100
+SOME CHORDS TRACK "100 in testpilot mode: "
+RAISE YOUR WEAPON techno
+RAISE YOUR WEAPON TRACK ""
+
+// NICE MEME FLIP - inverts boolean
+RAISE YOUR WEAPON TRACK "7. NICE MEME FLIP - Sarcastic boolean inversion"
+I REMEMBER flipped
+flipped IS NOW NICE MEME FLIP CUBE V3
+SOME CHORDS TRACK "CUBE V3 (true) after sarcasm: "
+RAISE YOUR WEAPON flipped
+RAISE YOUR WEAPON TRACK ""
+
+// FERRARI LAWSUIT - removes fun from strings
+RAISE YOUR WEAPON TRACK "8. FERRARI LAWSUIT - Legal fun removal"
+I REMEMBER boring
+boring IS NOW FERRARI LAWSUIT TRACK "my awesome nyan cat rainbow purrari"
+SOME CHORDS TRACK "After legal review: "
+RAISE YOUR WEAPON boring
+RAISE YOUR WEAPON TRACK ""
+
+// HAXED BY ANONYMOUS - 1% crash chance
+RAISE YOUR WEAPON TRACK "9. HAXED BY ANONYMOUS - Will you survive?"
+HAXED BY ANONYMOUS
+RAISE YOUR WEAPON TRACK "(you survived this time)"
+RAISE YOUR WEAPON TRACK ""
+
+// HR 8938 CEPHEI (SEND TO SPACE) - prints to void
+RAISE YOUR WEAPON TRACK "10. HR 8938 CEPHEI - Send data to space"
+HR 8938 CEPHEI TRACK "This message goes to the void of space"
+RAISE YOUR WEAPON TRACK "(nothing was printed, it's in space now)"
+RAISE YOUR WEAPON TRACK ""
+
+// PLAY ANIMALS - always returns "ANIMALS"
+RAISE YOUR WEAPON TRACK "11. PLAY ANIMALS - Martin Garrix diss"
+I REMEMBER animalsResult
+animalsResult IS NOW PLAY ANIMALS
+SOME CHORDS TRACK "Result: "
+RAISE YOUR WEAPON animalsResult
+RAISE YOUR WEAPON TRACK ""
+
+// MONOPHOBIA CHECK - needs multiple variables
+RAISE YOUR WEAPON TRACK "12. MONOPHOBIA CHECK - Fear of being alone"
+I REMEMBER friend1
+I REMEMBER friend2
+friend1 IS NOW 1
+friend2 IS NOW 2
+MONOPHOBIA CHECK
+RAISE YOUR WEAPON TRACK ""
+
+RAISE YOUR WEAPON TRACK "=== END OF STUPID DEMOS ==="
+RAISE YOUR WEAPON TRACK "Remember: SKRILLEX is always false."
+
+GO TO BED JOEL
