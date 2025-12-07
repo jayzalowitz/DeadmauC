@@ -1,0 +1,53 @@
+// Twitter Beef Simulator in DeadmauC
+// "If you don't get my sense of humour, then f*** you." - Joel
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== DEADMAU5 TWITTER BEEF SIMULATOR ==="
+RAISE YOUR WEAPON TRACK ""
+
+// Set up the beef array
+SETLIST beefs HOLDING TRACK "Skrillex", TRACK "Martin Garrix", TRACK "Marshmello", TRACK "Avicii", TRACK "Kanye", TRACK "The Chainsmokers"
+
+I REMEMBER beef_count
+beef_count IS NOW 0
+
+RAISE YOUR WEAPON TRACK "Loading today's potential beefs..."
+FAXING BERLIN 500
+
+STROBE i FROM 0 TO 5
+FLASH
+    I REMEMBER target
+    target IS NOW TRACK NUMBER beefs i
+
+    SOME CHORDS TRACK "- "
+    RAISE YOUR WEAPON target
+
+    PUMP THIS beef_count
+    FAXING BERLIN 200
+UNFLASH
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Beefs loaded. Preparing responses..."
+RAISE YOUR WEAPON TRACK ""
+FAXING BERLIN 500
+
+// The classic responses
+RAISE YOUR WEAPON TRACK "Response options:"
+RAISE YOUR WEAPON TRACK "1. 'U MAD BRO?'"
+RAISE YOUR WEAPON TRACK "2. *plays Animals mixed with Old MacDonald*"
+RAISE YOUR WEAPON TRACK "3. *posts their phone number on shirt*"
+RAISE YOUR WEAPON TRACK "4. *builds bigger cube*"
+RAISE YOUR WEAPON TRACK ""
+
+I REMEMBER response_ready
+response_ready IS NOW CUBE V3
+
+WHATS THE FUSS response_ready SAME BPM AS CUBE V3
+THE BEAT DROPS
+    RAISE YOUR WEAPON TRACK "Status: Ready to tweet"
+    RAISE YOUR WEAPON TRACK "Caffeine level: Maximum"
+    RAISE YOUR WEAPON TRACK "Filter: MEOWINGTONS (null)"
+WHATEVER
+
+GO TO BED JOEL

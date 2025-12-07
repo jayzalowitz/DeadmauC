@@ -1,0 +1,31 @@
+// FizzBuzz in DeadmauC
+// Classic programming challenge with maximum shade
+
+ATTACH THE MAU5HEAD
+
+STROBE i FROM 1 TO 100
+FLASH
+    I REMEMBER fizz
+    I REMEMBER buzz
+    fizz IS NOW MODULATE BY i 3
+    buzz IS NOW MODULATE BY i 5
+
+    WHATS THE FUSS fizz SAME BPM AS 0 ALSO buzz SAME BPM AS 0
+    THE BEAT DROPS
+        RAISE YOUR WEAPON TRACK "FizzBuzz"
+    FML
+        WHATS THE FUSS fizz SAME BPM AS 0
+        THE BEAT DROPS
+            RAISE YOUR WEAPON TRACK "Fizz"
+        FML
+            WHATS THE FUSS buzz SAME BPM AS 0
+            THE BEAT DROPS
+                RAISE YOUR WEAPON TRACK "Buzz"
+            FML
+                RAISE YOUR WEAPON i
+            WHATEVER
+        WHATEVER
+    WHATEVER
+UNFLASH
+
+GO TO BED JOEL
