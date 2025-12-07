@@ -445,6 +445,73 @@ class Interpreter {
         this.output('*aggressive coffee consumption*');
         return coffeeVal * 420;
 
+      // === MEMORY MANAGEMENT (James Hype Beef) ===
+
+      case NodeType.JAMES_HYPE: {
+        // Garbage collection - James Hype remixes EVERYTHING
+        // Clear all variables, functions, everything. Total destruction.
+        const gcVarCount = env.variables.size;
+        const gcFuncCount = this.functions.size;
+
+        this.output('*James Hype has entered the chat*');
+        this.output(`Remixing ${gcVarCount} variables and ${gcFuncCount} functions...`);
+
+        // Dramatic pause
+        await this.sleep(500);
+
+        // The remix messages
+        const remixMessages = [
+          'Adding unnecessary drops...',
+          'Speeding up the BPM for no reason...',
+          'Removing all the good parts...',
+          'Making it "festival-ready"...',
+          'Destroying the original vibe...',
+        ];
+
+        for (const remixMsg of remixMessages) {
+          this.output(remixMsg);
+          await this.sleep(200);
+        }
+
+        // Clear everything
+        env.variables.clear();
+        this.functions.clear();
+
+        this.output('');
+        this.output('*James Hype Remix Complete*');
+        this.output(`Garbage collected: ${gcVarCount} variables, ${gcFuncCount} functions`);
+        this.output('The original is unrecognizable. As intended.');
+        this.output('');
+        this.output('Joel would tweet about this.');
+
+        return null;
+      }
+
+      case NodeType.JAMES_HYPE_REMIX: {
+        // Delete specific variable - remix it out of existence
+        const remixVarName = node.name;
+
+        if (!env.has(remixVarName)) {
+          throw new Error(`Cannot remix '${remixVarName}' - it doesn't exist. James Hype can only destroy things that exist. Unlike his creativity.`);
+        }
+
+        const remixOldValue = env.get(remixVarName);
+        this.output(`*James Hype remixing '${remixVarName}'*`);
+        this.output(`Original value: ${remixOldValue}`);
+        this.output('Adding drops... removing soul... making it generic...');
+
+        // Delete the variable
+        env.variables.delete(remixVarName);
+        if (env.parent) {
+          env.parent.variables.delete(remixVarName);
+        }
+
+        this.output(`'${remixVarName}' has been remixed into oblivion.`);
+        this.output('It\'s gone. Forever. Like musical integrity.');
+
+        return null;
+      }
+
       default:
         throw new Error(`Unknown node type: ${node.type}. Joel would probably mass-block whoever wrote this.`);
     }

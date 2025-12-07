@@ -227,6 +227,32 @@ These functions exist because sometimes you need features that serve absolutely 
 | `RANDOM ALBUM TITLE` | Returns random deadmau5 album name | Self-explanatory |
 | `COFFEE ADDICTION value` | Multiplies by 420 | Caffeine math |
 
+### Memory Management (The James Hype Beef)
+
+Because every language needs garbage collection, and nothing says "destroy everything" like James Hype.
+
+| Function | What It Does | Why |
+|----------|--------------|-----|
+| `JAMES HYPE THIS` | **Full garbage collection** - clears ALL variables and functions | He remixes everything to death |
+| `JAMES HYPE REMIX varname` | Deletes a specific variable | Targeted destruction |
+
+When you call `JAMES HYPE THIS`, you get the full experience:
+- Dramatic entrance message
+- Progress updates about "adding unnecessary drops" and "removing all the good parts"
+- Total annihilation of your program's memory
+- Snarky commentary about musical integrity
+
+```
+// Create some beautiful variables
+I REMEMBER artisticVision
+artisticVision IS NOW 100
+
+// Now destroy everything
+JAMES HYPE THIS
+
+// artisticVision is gone. Forever. Like the original song.
+```
+
 ### The Inescapable Loop
 
 ```
@@ -327,6 +353,7 @@ node src/index.js examples/aliases.mau5
 node src/index.js examples/128bpm.mau5
 node src/index.js examples/drop_tease.mau5
 node src/index.js examples/dj_mode_crash.mau5   # Guaranteed to crash
+node src/index.js examples/james_hype_gc.mau5  # Garbage collection demo
 ```
 
 ## Complete Keyword Reference
@@ -357,6 +384,8 @@ node src/index.js examples/dj_mode_crash.mau5   # Guaranteed to crash
 | `U MAD BRO` | `throw` | Catchphrase |
 | `GRAMMY SPEECH` | print quote + nothing | "We all hit play" |
 | `DJ MODE` | crash | IM NOT A DJ |
+| `JAMES HYPE THIS` | garbage collection | British DJ beef |
+| `JAMES HYPE REMIX` | delete variable | Targeted remix |
 
 ## Context for the Confused
 
@@ -371,6 +400,7 @@ node src/index.js examples/dj_mode_crash.mau5   # Guaranteed to crash
 - **AT 128 BPM** — Standard EDM tempo. Non-negotiable. The loop cannot be broken.
 - **TESTPILOT** — His techno alias. Hence the "dark and minimal" output.
 - **HR 8938 CEPHEI** — A real star. He wrote a song about it. Values sent there go to the void of space.
+- **JAMES HYPE** — British DJ known for remixing everything. Deadmau5 has publicly dissed his style. Hence, garbage collection.
 
 ## Things That Made It Into The Language But Shouldn't Have
 

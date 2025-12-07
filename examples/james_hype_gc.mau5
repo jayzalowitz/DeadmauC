@@ -1,0 +1,60 @@
+// James Hype Garbage Collection Demo
+// When you need to destroy your code's soul like he destroys songs
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== JAMES HYPE GARBAGE COLLECTION ==="
+RAISE YOUR WEAPON TRACK "Memory management for people who hate good music"
+RAISE YOUR WEAPON TRACK ""
+
+// Create some variables
+I REMEMBER originalSong
+I REMEMBER artisticVision
+I REMEMBER musicalIntegrity
+I REMEMBER goodTaste
+
+originalSong IS NOW TRACK "A beautiful progressive house track"
+artisticVision IS NOW 100
+musicalIntegrity IS NOW CUBE V3
+goodTaste IS NOW TRACK "Intact"
+
+RAISE YOUR WEAPON TRACK "Before James Hype:"
+SOME CHORDS TRACK "  originalSong: "
+RAISE YOUR WEAPON originalSong
+SOME CHORDS TRACK "  artisticVision: "
+RAISE YOUR WEAPON artisticVision
+SOME CHORDS TRACK "  musicalIntegrity: "
+RAISE YOUR WEAPON musicalIntegrity
+SOME CHORDS TRACK "  goodTaste: "
+RAISE YOUR WEAPON goodTaste
+RAISE YOUR WEAPON TRACK ""
+
+// Define a function too
+THIS IS THE HOOK makeArt TAKING inspiration
+BREAKDOWN
+    SEND BACK inspiration LAYER WITH TRACK " (with feeling)"
+BUILDUP COMPLETE
+
+RAISE YOUR WEAPON TRACK "Function 'makeArt' defined."
+RAISE YOUR WEAPON TRACK ""
+
+RAISE YOUR WEAPON TRACK "Now let's call in James Hype..."
+RAISE YOUR WEAPON TRACK ""
+
+// GARBAGE COLLECTION TIME
+JAMES HYPE THIS
+
+RAISE YOUR WEAPON TRACK ""
+RAISE YOUR WEAPON TRACK "Trying to access variables after the remix..."
+RAISE YOUR WEAPON TRACK ""
+
+// This will fail because everything is gone
+GHOSTS N STUFF
+    RAISE YOUR WEAPON originalSong
+CATCH THE GLITCH err
+    SOME CHORDS TRACK "Error: "
+    RAISE YOUR WEAPON err
+    RAISE YOUR WEAPON TRACK "(The variable is gone. James Hype got it.)"
+WHATEVER
+
+GO TO BED JOEL

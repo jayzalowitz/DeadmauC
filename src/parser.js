@@ -62,6 +62,10 @@ const NodeType = {
   AT_128_BPM: 'At128BPM',
   RANDOM_ALBUM_TITLE: 'RandomAlbumTitle',
   COFFEE_ADDICTION: 'CoffeeAddiction',
+
+  // Memory management (James Hype beef)
+  JAMES_HYPE: 'JamesHype',           // garbage collection
+  JAMES_HYPE_REMIX: 'JamesHypeRemix', // delete specific variable
 };
 
 class ASTNode {
@@ -269,6 +273,14 @@ class Parser {
 
       case TokenType.COFFEE_ADDICTION:
         return this.parseCoffeeAddiction();
+
+      // Memory management (James Hype beef)
+      case TokenType.JAMES_HYPE:
+        this.advance();
+        return new ASTNode(NodeType.JAMES_HYPE);
+
+      case TokenType.JAMES_HYPE_REMIX:
+        return this.parseJamesHypeRemix();
 
       default:
         this.error(`Unexpected token: ${token.type} (${token.value})`);
@@ -813,6 +825,12 @@ class Parser {
     this.advance();
     const value = this.parseExpression();
     return new ASTNode(NodeType.COFFEE_ADDICTION, { value });
+  }
+
+  parseJamesHypeRemix() {
+    this.advance();
+    const name = this.expect(TokenType.IDENTIFIER).value;
+    return new ASTNode(NodeType.JAMES_HYPE_REMIX, { name });
   }
 }
 

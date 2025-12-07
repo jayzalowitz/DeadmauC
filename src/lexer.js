@@ -117,6 +117,10 @@ const TokenType = {
   RANDOM_ALBUM_TITLE: 'RANDOM_ALBUM_TITLE',   // Returns random deadmau5 album name
   COFFEE_ADDICTION: 'COFFEE_ADDICTION',       // Multiplies by caffeine constant (420)
 
+  // Memory management (the beef)
+  JAMES_HYPE: 'JAMES_HYPE',                   // Garbage collection (he remixes everything to death)
+  JAMES_HYPE_REMIX: 'JAMES_HYPE_REMIX',       // Delete specific variable (remix it out of existence)
+
   // Generic
   IDENTIFIER: 'IDENTIFIER',
   WITH: 'WITH',
@@ -267,6 +271,11 @@ class Lexer {
       ['AT 128 BPM', TokenType.AT_128_BPM],
       ['RANDOM ALBUM TITLE', TokenType.RANDOM_ALBUM_TITLE],
       ['COFFEE ADDICTION', TokenType.COFFEE_ADDICTION],
+
+      // Memory management (James Hype beef)
+      ['JAMES HYPE THIS', TokenType.JAMES_HYPE],              // garbage collection
+      ['LET JAMES HYPE REMIX', TokenType.JAMES_HYPE_REMIX],   // delete variable
+      ['JAMES HYPE REMIX', TokenType.JAMES_HYPE_REMIX],       // shorter alias
 
       // Booleans and null - the best part (with many aliases)
       ['CUBE V3', TokenType.TRUE],
