@@ -20,6 +20,7 @@
             --green: #4ade80;
             --red: #f87171;
             --purple: #c084fc;
+            --yellow: #fbbf24;
         }
 
         * {
@@ -37,7 +38,7 @@
         }
 
         .container {
-            max-width: 820px;
+            max-width: 880px;
             margin: 0 auto;
             padding: 60px 24px;
         }
@@ -121,6 +122,7 @@
         .kw { color: var(--accent); }
         .str { color: var(--green); }
         .cmt { color: var(--text-muted); }
+        .stupid { color: var(--yellow); }
 
         .types {
             display: grid;
@@ -160,6 +162,26 @@
         .type-card.f code { color: var(--red); }
         .type-card.n code { color: var(--purple); }
 
+        .aliases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .alias-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .alias-item.t { border-left: 3px solid var(--green); }
+        .alias-item.f { border-left: 3px solid var(--red); }
+        .alias-item.n { border-left: 3px solid var(--purple); }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -193,6 +215,10 @@
             font-size: 0.8rem;
         }
 
+        .stupid-table td:first-child {
+            color: var(--yellow);
+        }
+
         .context-list {
             list-style: none;
         }
@@ -208,7 +234,7 @@
             font-weight: 600;
         }
 
-        .didnt-make-it {
+        .didnt-make-it, .did-make-it {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -216,22 +242,30 @@
             margin: 20px 0;
         }
 
-        .didnt-make-it ul {
+        .did-make-it {
+            border-left: 3px solid var(--yellow);
+        }
+
+        .didnt-make-it ul, .did-make-it ul {
             list-style: none;
             margin: 0;
         }
 
-        .didnt-make-it li {
+        .didnt-make-it li, .did-make-it li {
             margin-bottom: 12px;
             color: var(--text-secondary);
         }
 
-        .didnt-make-it li:last-child {
+        .didnt-make-it li:last-child, .did-make-it li:last-child {
             margin-bottom: 0;
         }
 
-        .didnt-make-it code {
+        .didnt-make-it code, .did-make-it code {
             color: var(--text-muted);
+        }
+
+        .did-make-it code {
+            color: var(--yellow);
         }
 
         footer {
@@ -250,6 +284,7 @@
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .types { grid-template-columns: 1fr; }
+            .aliases-grid { grid-template-columns: 1fr 1fr; }
             pre { padding: 16px; font-size: 0.8rem; }
             table { font-size: 0.8rem; }
             th, td { padding: 10px 8px; }
@@ -261,7 +296,7 @@
         <header>
             <h1>DeadmauC</h1>
             <p class="subtitle">
-                An esoteric programming language based on Deadmau5 references. Song titles, beefs, and things he's gotten sued over.
+                An esoteric programming language based on Deadmau5 references. Song titles, beefs, things he's gotten sued over, and some features that definitely shouldn't exist.
             </p>
             <div class="links">
                 <a href="https://github.com/jayzalowitz/DeadmauC">GitHub</a>
@@ -302,25 +337,63 @@ node src/index.js examples/hello.mau5</code></pre>
                     <div class="why">RIP Professor Meowingtons PhD (2007-2023)</div>
                 </div>
             </div>
+
+            <h3>Boolean Aliases (because one true/false is never enough)</h3>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--green);">Things that are true:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item t">CUBE V3</div>
+                <div class="alias-item t">THE CUBE</div>
+                <div class="alias-item t">TESTPILOT</div>
+                <div class="alias-item t">PROGRESSIVE HOUSE</div>
+                <div class="alias-item t">CHIPOTLE</div>
+                <div class="alias-item t">COFFEE</div>
+                <div class="alias-item t">THE MAU5HEAD</div>
+                <div class="alias-item t">TORONTO</div>
+            </div>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--red);">Things that are false:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item f">SKRILLEX</div>
+                <div class="alias-item f">MARSHMELLO</div>
+                <div class="alias-item f">BIG ROOM</div>
+                <div class="alias-item f">ANIMALS BY MARTIN GARRIX</div>
+                <div class="alias-item f">BUTTON PUSHER</div>
+                <div class="alias-item f">MAINSTREAM</div>
+                <div class="alias-item f">DJ</div>
+            </div>
+
+            <p style="margin-bottom: 8px;"><strong style="color: var(--purple);">Things that are null:</strong></p>
+            <div class="aliases-grid">
+                <div class="alias-item n">MEOWINGTONS</div>
+                <div class="alias-item n">PROFESSOR MEOWINGTONS</div>
+                <div class="alias-item n">RIP MEOWINGTONS</div>
+            </div>
         </section>
 
         <hr>
 
         <section>
-            <h2>Variables</h2>
-            <pre><code><span class="kw">I REMEMBER</span> x              <span class="cmt">// declare (song)</span>
-x <span class="kw">IS NOW</span> 42               <span class="cmt">// assign</span>
-x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"hello"</span>   <span class="cmt">// strings</span></code></pre>
+            <h2>Variables & Output</h2>
+            <pre><code><span class="kw">I REMEMBER</span> x                       <span class="cmt">// declare (song)</span>
+<span class="kw">LEMME TELL YOU ABOUT</span> y              <span class="cmt">// alternative (rambling mode)</span>
+x <span class="kw">IS NOW</span> 42                          <span class="cmt">// assign</span>
+x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str">"hello"</span>              <span class="cmt">// strings</span>
+
+<span class="kw">RAISE YOUR WEAPON</span> x                  <span class="cmt">// print with newline</span>
+<span class="kw">SOME CHORDS</span> x                        <span class="cmt">// print without newline</span>
+<span class="kw">PROFESSIONAL GRIEFERS</span> x              <span class="cmt">// print to stderr (angry mode)</span>
+<span class="kw">TWITTER RANT</span> x                       <span class="cmt">// ALL CAPS PRINT (3 AM mode)</span></code></pre>
         </section>
 
         <hr>
 
         <section>
             <h2>Conditionals</h2>
-            <pre><code><span class="kw">WHATS THE FUSS</span> x <span class="kw">LOUDER THAN</span> 10
+            <pre><code><span class="kw">WHATS THE FUSS</span> x <span class="kw">LOUDER THAN</span> 10     <span class="cmt">// or U MAD ABOUT</span>
 <span class="kw">THE BEAT DROPS</span>
     <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"loud"</span>
-<span class="kw">FML</span>                                  <span class="cmt">// else (song)</span>
+<span class="kw">FML</span>                                    <span class="cmt">// else (song)</span>
     <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"quiet"</span>
 <span class="kw">WHATEVER</span></code></pre>
         </section>
@@ -329,23 +402,29 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
 
         <section>
             <h2>Loops</h2>
-            <h3>For</h3>
+            <h3>For Loop</h3>
             <pre><code><span class="kw">STROBE</span> i <span class="kw">FROM</span> 1 <span class="kw">TO</span> 10      <span class="cmt">// song</span>
 <span class="kw">FLASH</span>
     <span class="kw">RAISE YOUR WEAPON</span> i
 <span class="kw">UNFLASH</span></code></pre>
-            <h3>While</h3>
+            <h3>While Loop</h3>
             <pre><code><span class="kw">WHILE ONE IS LESS THAN TWO</span> x <span class="kw">QUIETER THAN</span> 100   <span class="cmt">// album title</span>
-<span class="kw">KEEP GOING</span>
+<span class="kw">KEEP GOING</span>                                        <span class="cmt">// or KEEP STREAMING</span>
     <span class="kw">PUMP THIS</span> x
-<span class="kw">IM DONE</span></code></pre>
+<span class="kw">IM DONE</span>                                           <span class="cmt">// or IM BORED</span></code></pre>
+            <h3>The Inescapable Loop</h3>
+            <pre><code><span class="stupid">AT 128 BPM</span> beat      <span class="cmt">// runs EXACTLY 128 times. no escape.</span>
+<span class="kw">FLASH</span>
+    <span class="kw">RAISE YOUR WEAPON</span> beat
+    <span class="kw">LAWYER UP MICKEY</span>  <span class="cmt">// this break is IGNORED. the BPM is 128.</span>
+<span class="kw">UNFLASH</span></code></pre>
         </section>
 
         <hr>
 
         <section>
             <h2>Functions</h2>
-            <pre><code><span class="kw">THIS IS THE HOOK</span> add <span class="kw">TAKING</span> a, b
+            <pre><code><span class="kw">THIS IS THE HOOK</span> add <span class="kw">TAKING</span> a, b   <span class="cmt">// or HERES THE DROP</span>
 <span class="kw">BREAKDOWN</span>
     <span class="kw">SEND BACK</span> a <span class="kw">LAYER WITH</span> b
 <span class="kw">BUILDUP COMPLETE</span>
@@ -356,33 +435,86 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
         <hr>
 
         <section>
-            <h2>FizzBuzz</h2>
+            <h2>Stupid Built-in Functions</h2>
+            <p>Features that serve absolutely no purpose. As intended.</p>
+
+            <h3>Time Wasters</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>PROGRESSIVE BUILDUP 500</td><td>prints "building tension..." repeatedly</td><td>prog house experience</td></tr>
+                    <tr><td>WAIT FOR THE DROP</td><td>waits random time, never drops</td><td>troll tracks</td></tr>
+                    <tr><td>CHIPOTLE RUN 1000</td><td>takes forever, returns "out of guac"</td><td>his food obsession</td></tr>
+                    <tr><td>CTHULHU SLEEPS 1000</td><td>sleep, but ominously</td><td>song reference</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Opposite Day Functions</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>NICE MEME FLIP value</td><td>returns opposite boolean + sarcasm</td><td>his catchphrase</td></tr>
+                    <tr><td>DJ MODE</td><td><strong>always crashes</strong></td><td>IM NOT A DJ</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Completely Useless Functions</h3>
+            <table class="stupid-table">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>What It Does</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>GRAMMY SPEECH</td><td>prints "We all hit play." and exits</td><td>the controversial quote</td></tr>
+                    <tr><td>ROB FORD COUNT</td><td>returns "1 2 3 4"</td><td>Coffee Runs episode</td></tr>
+                    <tr><td>FERRARI LAWSUIT value</td><td>strips all fun words from string</td><td>Purrari incident</td></tr>
+                    <tr><td>MASS BLOCK array</td><td>removes random elements</td><td>Twitter rampage hobby</td></tr>
+                    <tr><td>TESTPILOT MODE value</td><td>returns value/2, says "dark and minimal"</td><td>his techno alias</td></tr>
+                    <tr><td>HR 8938 CEPHEI value</td><td>evaluates then discards to space</td><td>song about a star</td></tr>
+                    <tr><td>HAXED BY ANONYMOUS</td><td>1% chance to crash</td><td>early hacker vibes</td></tr>
+                    <tr><td>MONOPHOBIA CHECK</td><td>crashes if only 1 variable exists</td><td>fear of being alone</td></tr>
+                    <tr><td>THE VELDT FEELS value</td><td>adds emotional suffix</td><td>the feels</td></tr>
+                    <tr><td>PLAY ANIMALS</td><td>always returns "ANIMALS"</td><td>Martin Garrix diss</td></tr>
+                    <tr><td>RANDOM ALBUM TITLE</td><td>returns random deadmau5 album</td><td>self-explanatory</td></tr>
+                    <tr><td>COFFEE ADDICTION value</td><td>multiplies by 420</td><td>caffeine math</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Twitter Beef Simulator</h2>
             <pre><code><span class="kw">ATTACH THE MAU5HEAD</span>
 
-<span class="kw">STROBE</span> i <span class="kw">FROM</span> 1 <span class="kw">TO</span> 100
-<span class="kw">FLASH</span>
-    <span class="kw">I REMEMBER</span> fizz
-    <span class="kw">I REMEMBER</span> buzz
-    fizz <span class="kw">IS NOW</span> <span class="kw">MODULATE BY</span> i 3
-    buzz <span class="kw">IS NOW</span> <span class="kw">MODULATE BY</span> i 5
+<span class="cmt">// Rate things using our boolean system</span>
+<span class="kw">SOME CHORDS</span> <span class="kw">TRACK</span> <span class="str">"CUBE V3: "</span>
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">CUBE V3</span>           <span class="cmt">// true</span>
 
-    <span class="kw">WHATS THE FUSS</span> fizz <span class="kw">SAME BPM AS</span> 0 <span class="kw">ALSO</span> buzz <span class="kw">SAME BPM AS</span> 0
-    <span class="kw">THE BEAT DROPS</span>
-        <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"FizzBuzz"</span>
-    <span class="kw">FML</span>
-        <span class="kw">WHATS THE FUSS</span> fizz <span class="kw">SAME BPM AS</span> 0
-        <span class="kw">THE BEAT DROPS</span>
-            <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"Fizz"</span>
-        <span class="kw">FML</span>
-            <span class="kw">WHATS THE FUSS</span> buzz <span class="kw">SAME BPM AS</span> 0
-            <span class="kw">THE BEAT DROPS</span>
-                <span class="kw">RAISE YOUR WEAPON</span> <span class="kw">TRACK</span> <span class="str">"Buzz"</span>
-            <span class="kw">FML</span>
-                <span class="kw">RAISE YOUR WEAPON</span> i
-            <span class="kw">WHATEVER</span>
-        <span class="kw">WHATEVER</span>
-    <span class="kw">WHATEVER</span>
-<span class="kw">UNFLASH</span>
+<span class="kw">SOME CHORDS</span> <span class="kw">TRACK</span> <span class="str">"SKRILLEX: "</span>
+<span class="kw">RAISE YOUR WEAPON</span> <span class="kw">SKRILLEX</span>          <span class="cmt">// false</span>
+
+<span class="cmt">// Twitter rant mode (ALL CAPS)</span>
+<span class="kw">TWITTER RANT</span> <span class="kw">TRACK</span> <span class="str">"why does everyone think edm is button pushing"</span>
+
+<span class="cmt">// Mass block your enemies</span>
+<span class="kw">SETLIST</span> enemies <span class="kw">HOLDING</span> <span class="kw">TRACK</span> <span class="str">"hater1"</span>, <span class="kw">TRACK</span> <span class="str">"hater2"</span>
+<span class="stupid">MASS BLOCK</span> enemies                   <span class="cmt">// randomly removes elements</span>
 
 <span class="kw">GO TO BED JOEL</span></code></pre>
         </section>
@@ -403,33 +535,24 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
                     <tr><td>ATTACH THE MAU5HEAD</td><td>main()</td><td>the helmet</td></tr>
                     <tr><td>GO TO BED JOEL</td><td>end</td><td>/mu/ meme</td></tr>
                     <tr><td>I REMEMBER</td><td>var</td><td>song</td></tr>
-                    <tr><td>IS NOW</td><td>=</td><td></td></tr>
                     <tr><td>RAISE YOUR WEAPON</td><td>print</td><td>song</td></tr>
-                    <tr><td>SOME CHORDS</td><td>print (no \\n)</td><td>song</td></tr>
+                    <tr><td>TWITTER RANT</td><td>print (ALL CAPS)</td><td>3 AM behavior</td></tr>
+                    <tr><td>PROFESSIONAL GRIEFERS</td><td>print to stderr</td><td>song</td></tr>
                     <tr><td>LAYER WITH</td><td>+</td><td>audio term</td></tr>
                     <tr><td>SIDECHAIN</td><td>*</td><td>production technique</td></tr>
-                    <tr><td>MODULATE BY</td><td>%</td><td>synth term</td></tr>
-                    <tr><td>LOUDER THAN</td><td>></td><td></td></tr>
-                    <tr><td>QUIETER THAN</td><td><</td><td></td></tr>
-                    <tr><td>SAME BPM AS</td><td>==</td><td></td></tr>
-                    <tr><td>WHATS THE FUSS</td><td>if</td><td></td></tr>
-                    <tr><td>THE BEAT DROPS</td><td>then</td><td></td></tr>
+                    <tr><td>LOUDER THAN / MORE FOLLOWERS THAN</td><td>></td><td>twitter</td></tr>
+                    <tr><td>QUIETER THAN / LESS BEEF THAN</td><td><</td><td>feuds</td></tr>
+                    <tr><td>WHATS THE FUSS / U MAD ABOUT</td><td>if</td><td></td></tr>
                     <tr><td>FML</td><td>else</td><td>song</td></tr>
-                    <tr><td>WHATEVER</td><td>endif</td><td></td></tr>
                     <tr><td>WHILE ONE IS LESS THAN TWO</td><td>while</td><td>album title</td></tr>
-                    <tr><td>STROBE</td><td>for</td><td>song</td></tr>
-                    <tr><td>LAWYER UP MICKEY</td><td>break</td><td>Disney lawsuit</td></tr>
-                    <tr><td>THIS IS THE HOOK</td><td>function</td><td></td></tr>
-                    <tr><td>BREAKDOWN / BUILDUP COMPLETE</td><td>{ / }</td><td>song structure</td></tr>
+                    <tr><td>AT 128 BPM</td><td>unbreakable loop (128x)</td><td>standard EDM tempo</td></tr>
+                    <tr><td>LAWYER UP MICKEY / CEASE AND DESIST</td><td>break</td><td>Disney lawsuit</td></tr>
                     <tr><td>DROP</td><td>call function</td><td></td></tr>
-                    <tr><td>SEND BACK</td><td>return</td><td></td></tr>
-                    <tr><td>COFFEE RUN WITH</td><td>input</td><td>YouTube series</td></tr>
-                    <tr><td>U MAD BRO</td><td>throw</td><td>catchphrase</td></tr>
-                    <tr><td>GHOSTS N STUFF</td><td>try</td><td>song</td></tr>
-                    <tr><td>FAXING BERLIN</td><td>sleep()</td><td>song</td></tr>
+                    <tr><td>U MAD BRO / BLOCK EVERYONE</td><td>throw</td><td>catchphrase</td></tr>
+                    <tr><td>DJ MODE</td><td>crash</td><td>IM NOT A DJ</td></tr>
                     <tr><td>CUBE V3</td><td>true</td><td>stage setup</td></tr>
-                    <tr><td>SKRILLEX</td><td>false</td><td></td></tr>
-                    <tr><td>MEOWINGTONS</td><td>null</td><td>his cat</td></tr>
+                    <tr><td>SKRILLEX</td><td>false</td><td>beef</td></tr>
+                    <tr><td>MEOWINGTONS</td><td>null</td><td>his cat (RIP)</td></tr>
                 </tbody>
             </table>
         </section>
@@ -439,18 +562,34 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
         <section>
             <h2>Context for the Confused</h2>
             <ul class="context-list">
-                <li><strong>CUBE V3</strong> — His stage setup. 260 tons, 600+ LED panels. Cost a fortune. Hence, <code>true</code>.</li>
+                <li><strong>CUBE V3</strong> — His stage setup. 260 tons, 600+ LED panels. Cost more than your house. Hence, <code>true</code>.</li>
                 <li><strong>SKRILLEX</strong> — They had beef. Hence, <code>false</code>.</li>
                 <li><strong>MEOWINGTONS</strong> — Professor Meowingtons PhD, his cat (2007-2023). Hence, <code>null</code>.</li>
-                <li><strong>LAWYER UP MICKEY</strong> — What Joel said when Disney tried to block his mau5head trademark because it looked too much like Mickey Mouse ears. He won.</li>
-                <li><strong>GO TO BED JOEL</strong> — /mu/ users would spam this during his late night posting sessions. He did not go to bed.</li>
-                <li><strong>WHILE ONE IS LESS THAN TWO</strong> — His 2014 album was literally called <code>while(1&lt;2)</code>. Yes, he named an album after an infinite loop.</li>
-                <li><strong>Coffee Runs</strong> — His YouTube series where he drives people around in sports cars and roasts them. Guests have included Pharrell and Toronto's former crack-smoking mayor Rob Ford.</li>
-                <li><strong>U MAD BRO</strong> — His catchphrase. He wore it on a shirt to the Grammys. The shirt also had Skrillex's phone number on it.</li>
+                <li><strong>LAWYER UP MICKEY</strong> — What Joel said when Disney tried to block his mau5head trademark. He won.</li>
+                <li><strong>GO TO BED JOEL</strong> — /mu/ users would spam this during his 3 AM posting sessions. He did not go to bed.</li>
+                <li><strong>WHILE ONE IS LESS THAN TWO</strong> — His 2014 album was literally called <code>while(1&lt;2)</code>.</li>
+                <li><strong>Coffee Runs</strong> — YouTube series where he drives people in sports cars. Featured Toronto's crack-smoking mayor Rob Ford.</li>
+                <li><strong>U MAD BRO</strong> — His catchphrase. He wore it on a Grammys shirt with Skrillex's phone number.</li>
+                <li><strong>AT 128 BPM</strong> — Standard EDM tempo. Non-negotiable. The loop cannot be broken.</li>
+                <li><strong>HR 8938 CEPHEI</strong> — A real star. He wrote a song about it. Values sent there go to space.</li>
             </ul>
         </section>
 
         <hr>
+
+        <section>
+            <h2>Things That Made It In (But Shouldn't Have)</h2>
+            <div class="did-make-it">
+                <ul>
+                    <li><code>DJ MODE</code> — Always crashes. Because IM NOT A DJ.</li>
+                    <li><code>MASS BLOCK</code> — Randomly removes array elements. Like his Twitter.</li>
+                    <li><code>CHIPOTLE RUN</code> — Takes forever, returns "out of guac". Accurate simulation.</li>
+                    <li><code>FERRARI LAWSUIT</code> — Removes all fun from strings. Thanks, Ferrari legal.</li>
+                    <li><code>HAXED BY ANONYMOUS</code> — 1% crash chance. You feel lucky?</li>
+                    <li><code>AT 128 BPM</code> — A loop that ignores break statements. The BPM is law.</li>
+                </ul>
+            </div>
+        </section>
 
         <section>
             <h2>Things That Didn't Make It</h2>
@@ -458,8 +597,8 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
                 <ul>
                     <li><code>PURRARI</code> — His Ferrari 458 wrapped in Nyan Cat. Ferrari sued him.</li>
                     <li><code>PRESS BUTTON RECEIVE BACON</code> — Too long.</li>
-                    <li><code>IM NOT A DJ</code> — He says this a lot. Nobody believes him.</li>
-                    <li><code>TORONTO TRAFFIC</code> — He complains about this constantly on stream. Considered for <code>throw</code>.</li>
+                    <li><code>TORONTO TRAFFIC</code> — He complains about this constantly. Considered for <code>throw</code>.</li>
+                    <li><code>AVICII TRIBUTE</code> — Too sad.</li>
                 </ul>
             </div>
         </section>
@@ -467,6 +606,7 @@ x <span class="kw">IS NOW</span> <span class="kw">TRACK</span> <span class="str"
         <footer>
             <p>Not affiliated with Joel Zimmerman or mau5trap.</p>
             <p>He would probably mass-block everyone involved in this project on Twitter.</p>
+            <p style="margin-top: 12px;">If you're reading this Joel: Sorry. Also, hire us to build the Cube v4 software.</p>
             <p style="margin-top: 20px;">File extension: <code>.mau5</code></p>
         </footer>
     </div>

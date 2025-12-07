@@ -1,0 +1,42 @@
+// AT 128 BPM - The loop you cannot escape
+// Standard EDM tempo. Non-negotiable.
+
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "=== THE INESCAPABLE 128 BPM LOOP ==="
+RAISE YOUR WEAPON TRACK "You will iterate exactly 128 times."
+RAISE YOUR WEAPON TRACK "No more. No less. This is the law."
+RAISE YOUR WEAPON TRACK ""
+
+I REMEMBER counter
+counter IS NOW 0
+
+// This loop ALWAYS runs 128 times
+// LAWYER UP MICKEY (break) is ignored
+AT 128 BPM beat
+FLASH
+    PUMP THIS counter
+
+    // Try to break out at 10 - it won't work
+    WHATS THE FUSS counter SAME BPM AS 10
+    THE BEAT DROPS
+        RAISE YOUR WEAPON TRACK "Attempting to break at 10..."
+        LAWYER UP MICKEY
+        RAISE YOUR WEAPON TRACK "(you thought you could escape)"
+    WHATEVER
+
+    // Print every 32 beats
+    WHATS THE FUSS MODULATE BY counter 32 SAME BPM AS 0
+    THE BEAT DROPS
+        SOME CHORDS TRACK "Beat "
+        SOME CHORDS counter
+        RAISE YOUR WEAPON TRACK " - still going..."
+    WHATEVER
+UNFLASH
+
+RAISE YOUR WEAPON TRACK ""
+SOME CHORDS TRACK "Final count: "
+RAISE YOUR WEAPON counter
+RAISE YOUR WEAPON TRACK "The BPM has been fulfilled."
+
+GO TO BED JOEL

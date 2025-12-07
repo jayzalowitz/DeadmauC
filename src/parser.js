@@ -14,6 +14,8 @@ const NodeType = {
   ASSIGNMENT: 'Assignment',
   PRINT: 'Print',
   PRINT_NO_NEWLINE: 'PrintNoNewline',
+  PRINT_STDERR: 'PrintStderr',
+  TWITTER_RANT: 'TwitterRant',
   INCREMENT: 'Increment',
   DECREMENT: 'Decrement',
   BINARY_OP: 'BinaryOp',
@@ -39,6 +41,27 @@ const NodeType = {
   TRY_CATCH: 'TryCatch',
   THROW: 'Throw',
   SLEEP: 'Sleep',
+
+  // === STUPID BUILT-IN FUNCTIONS ===
+  PROGRESSIVE_BUILDUP: 'ProgressiveBuildup',
+  WAIT_FOR_DROP: 'WaitForDrop',
+  CHIPOTLE_RUN: 'ChipotleRun',
+  NICE_MEME: 'NiceMeme',
+  DJ_MODE: 'DJMode',
+  GRAMMY_SPEECH: 'GrammySpeech',
+  ROB_FORD: 'RobFord',
+  FERRARI_LAWSUIT: 'FerrariLawsuit',
+  MASS_BLOCK: 'MassBlock',
+  TESTPILOT: 'Testpilot',
+  HR_8938_CEPHEI: 'HR8938Cephei',
+  HAXED: 'Haxed',
+  MONOPHOBIA: 'Monophobia',
+  THE_VELDT: 'TheVeldt',
+  CTHULHU_SLEEPS: 'CthulhuSleeps',
+  ANIMALS: 'Animals',
+  AT_128_BPM: 'At128BPM',
+  RANDOM_ALBUM_TITLE: 'RandomAlbumTitle',
+  COFFEE_ADDICTION: 'CoffeeAddiction',
 };
 
 class ASTNode {
@@ -174,6 +197,78 @@ class Parser {
 
       case TokenType.SLEEP:
         return this.parseSleep();
+
+      // === STUPID BUILT-IN FUNCTIONS ===
+      case TokenType.PRINT_STDERR:
+        return this.parsePrintStderr();
+
+      case TokenType.TWITTER_RANT:
+        return this.parseTwitterRant();
+
+      case TokenType.PROGRESSIVE_BUILDUP:
+        return this.parseProgressiveBuildup();
+
+      case TokenType.WAIT_FOR_DROP:
+        this.advance();
+        return new ASTNode(NodeType.WAIT_FOR_DROP);
+
+      case TokenType.CHIPOTLE_RUN:
+        return this.parseChipotleRun();
+
+      case TokenType.NICE_MEME:
+        return this.parseNiceMeme();
+
+      case TokenType.DJ_MODE:
+        this.advance();
+        return new ASTNode(NodeType.DJ_MODE);
+
+      case TokenType.GRAMMY_SPEECH:
+        this.advance();
+        return new ASTNode(NodeType.GRAMMY_SPEECH);
+
+      case TokenType.ROB_FORD:
+        this.advance();
+        return new ASTNode(NodeType.ROB_FORD);
+
+      case TokenType.FERRARI_LAWSUIT:
+        return this.parseFerrariLawsuit();
+
+      case TokenType.MASS_BLOCK:
+        return this.parseMassBlock();
+
+      case TokenType.TESTPILOT:
+        return this.parseTestpilot();
+
+      case TokenType.HR_8938_CEPHEI:
+        return this.parseHR8938Cephei();
+
+      case TokenType.HAXED:
+        this.advance();
+        return new ASTNode(NodeType.HAXED);
+
+      case TokenType.MONOPHOBIA:
+        this.advance();
+        return new ASTNode(NodeType.MONOPHOBIA);
+
+      case TokenType.THE_VELDT:
+        return this.parseTheVeldt();
+
+      case TokenType.CTHULHU_SLEEPS:
+        return this.parseCthulhuSleeps();
+
+      case TokenType.ANIMALS:
+        this.advance();
+        return new ASTNode(NodeType.ANIMALS);
+
+      case TokenType.AT_128_BPM:
+        return this.parseAt128BPM();
+
+      case TokenType.RANDOM_ALBUM_TITLE:
+        this.advance();
+        return new ASTNode(NodeType.RANDOM_ALBUM_TITLE);
+
+      case TokenType.COFFEE_ADDICTION:
+        return this.parseCoffeeAddiction();
 
       default:
         this.error(`Unexpected token: ${token.type} (${token.value})`);
@@ -576,7 +671,148 @@ class Parser {
       return this.parseAdditive();
     }
 
+    // === STUPID BUILT-IN FUNCTIONS THAT RETURN VALUES ===
+    if (this.match(TokenType.ROB_FORD)) {
+      this.advance();
+      return new ASTNode(NodeType.ROB_FORD);
+    }
+
+    if (this.match(TokenType.RANDOM_ALBUM_TITLE)) {
+      this.advance();
+      return new ASTNode(NodeType.RANDOM_ALBUM_TITLE);
+    }
+
+    if (this.match(TokenType.ANIMALS)) {
+      this.advance();
+      return new ASTNode(NodeType.ANIMALS);
+    }
+
+    if (this.match(TokenType.NICE_MEME)) {
+      this.advance();
+      const value = this.parseExpression();
+      return new ASTNode(NodeType.NICE_MEME, { value });
+    }
+
+    if (this.match(TokenType.TESTPILOT)) {
+      this.advance();
+      const value = this.parseExpression();
+      return new ASTNode(NodeType.TESTPILOT, { value });
+    }
+
+    if (this.match(TokenType.FERRARI_LAWSUIT)) {
+      this.advance();
+      const value = this.parseExpression();
+      return new ASTNode(NodeType.FERRARI_LAWSUIT, { value });
+    }
+
+    if (this.match(TokenType.THE_VELDT)) {
+      this.advance();
+      const value = this.parseExpression();
+      return new ASTNode(NodeType.THE_VELDT, { value });
+    }
+
+    if (this.match(TokenType.COFFEE_ADDICTION)) {
+      this.advance();
+      const value = this.parseExpression();
+      return new ASTNode(NodeType.COFFEE_ADDICTION, { value });
+    }
+
+    if (this.match(TokenType.CHIPOTLE_RUN)) {
+      this.advance();
+      const duration = this.match(TokenType.NUMBER, TokenType.IDENTIFIER) ? this.parseExpression() : null;
+      return new ASTNode(NodeType.CHIPOTLE_RUN, { duration });
+    }
+
     this.error(`Unexpected token in expression: ${token.type}`);
+  }
+
+  // === STUPID BUILT-IN FUNCTION PARSERS ===
+
+  parsePrintStderr() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.PRINT_STDERR, { value });
+  }
+
+  parseTwitterRant() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.TWITTER_RANT, { value });
+  }
+
+  parseProgressiveBuildup() {
+    this.advance();
+    const duration = this.parseExpression();
+    return new ASTNode(NodeType.PROGRESSIVE_BUILDUP, { duration });
+  }
+
+  parseChipotleRun() {
+    this.advance();
+    const duration = this.match(TokenType.NUMBER, TokenType.IDENTIFIER) ? this.parseExpression() : null;
+    return new ASTNode(NodeType.CHIPOTLE_RUN, { duration });
+  }
+
+  parseNiceMeme() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.NICE_MEME, { value });
+  }
+
+  parseFerrariLawsuit() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.FERRARI_LAWSUIT, { value });
+  }
+
+  parseMassBlock() {
+    this.advance();
+    const array = this.expect(TokenType.IDENTIFIER).value;
+    return new ASTNode(NodeType.MASS_BLOCK, { array });
+  }
+
+  parseTestpilot() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.TESTPILOT, { value });
+  }
+
+  parseHR8938Cephei() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.HR_8938_CEPHEI, { value });
+  }
+
+  parseTheVeldt() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.THE_VELDT, { value });
+  }
+
+  parseCthulhuSleeps() {
+    this.advance();
+    const duration = this.parseExpression();
+    return new ASTNode(NodeType.CTHULHU_SLEEPS, { duration });
+  }
+
+  parseAt128BPM() {
+    this.advance();
+    const variable = this.expect(TokenType.IDENTIFIER).value;
+    this.expect(TokenType.FOR_START, 'Expected "FLASH" after AT 128 BPM declaration');
+
+    const body = [];
+    while (!this.match(TokenType.FOR_END, TokenType.EOF)) {
+      body.push(this.parseStatement());
+    }
+
+    this.expect(TokenType.FOR_END, 'Expected "UNFLASH" to close AT 128 BPM loop');
+
+    return new ASTNode(NodeType.AT_128_BPM, { variable, body });
+  }
+
+  parseCoffeeAddiction() {
+    this.advance();
+    const value = this.parseExpression();
+    return new ASTNode(NodeType.COFFEE_ADDICTION, { value });
   }
 }
 

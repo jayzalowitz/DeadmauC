@@ -17,6 +17,8 @@ const TokenType = {
   // Output
   PRINT: 'PRINT',                       // RAISE YOUR WEAPON
   PRINT_NO_NEWLINE: 'PRINT_NO_NEWLINE', // SOME CHORDS
+  PRINT_STDERR: 'PRINT_STDERR',         // PROFESSIONAL GRIEFERS (angry print)
+  TWITTER_RANT: 'TWITTER_RANT',         // TWITTER RANT (all caps print)
 
   // Arithmetic
   INCREMENT: 'INCREMENT',               // PUMP THIS
@@ -88,6 +90,33 @@ const TokenType = {
   // Special
   SLEEP: 'SLEEP',                       // FAXING BERLIN
 
+  // === STUPID BUILT-IN FUNCTIONS (the good stuff) ===
+
+  // Time wasters
+  PROGRESSIVE_BUILDUP: 'PROGRESSIVE_BUILDUP', // Does nothing but print "building tension..."
+  WAIT_FOR_DROP: 'WAIT_FOR_DROP',             // Sleeps random time, never "drops"
+  CHIPOTLE_RUN: 'CHIPOTLE_RUN',               // Takes forever, returns "out of guac"
+
+  // Opposite day functions
+  NICE_MEME: 'NICE_MEME',                     // Returns opposite boolean
+  DJ_MODE: 'DJ_MODE',                         // Always throws error "IM NOT A DJ"
+
+  // Completely useless
+  GRAMMY_SPEECH: 'GRAMMY_SPEECH',             // Prints "we all hit play" and does nothing
+  ROB_FORD: 'ROB_FORD',                       // Returns "1 2 3 4" (he counted on coffee run)
+  FERRARI_LAWSUIT: 'FERRARI_LAWSUIT',         // Strips all color/fun from string
+  MASS_BLOCK: 'MASS_BLOCK',                   // Removes random elements from array
+  TESTPILOT: 'TESTPILOT',                     // Returns value/2 and says "dark and minimal"
+  HR_8938_CEPHEI: 'HR_8938_CEPHEI',           // Prints to nowhere (the void of space)
+  HAXED: 'HAXED',                             // 1% chance to crash your program
+  MONOPHOBIA: 'MONOPHOBIA',                   // Refuses to run if only one variable exists
+  THE_VELDT: 'THE_VELDT',                     // Adds emotional suffix to string
+  CTHULHU_SLEEPS: 'CTHULHU_SLEEPS',           // Sleep but ominously
+  ANIMALS: 'ANIMALS',                         // Always returns "ANIMALS" (Martin Garrix diss)
+  AT_128_BPM: 'AT_128_BPM',                   // Loop that MUST run exactly 128 times
+  RANDOM_ALBUM_TITLE: 'RANDOM_ALBUM_TITLE',   // Returns random deadmau5 album name
+  COFFEE_ADDICTION: 'COFFEE_ADDICTION',       // Multiplies by caffeine constant (420)
+
   // Generic
   IDENTIFIER: 'IDENTIFIER',
   WITH: 'WITH',
@@ -129,51 +158,70 @@ class Lexer {
     this.keywords = [
       // Program structure
       ['ATTACH THE MAU5HEAD', TokenType.PROGRAM_START],
+      ['PUT ON THE MAU5HEAD', TokenType.PROGRAM_START],    // alias
+      ['HELMET ON', TokenType.PROGRAM_START],              // alias
       ['GO TO BED JOEL', TokenType.PROGRAM_END],
+      ['JOEL GO TO SLEEP', TokenType.PROGRAM_END],         // alias
+      ['GOODNIGHT TORONTO', TokenType.PROGRAM_END],        // alias
 
       // Output
       ['RAISE YOUR WEAPON', TokenType.PRINT],
       ['SOME CHORDS', TokenType.PRINT_NO_NEWLINE],
+      ['PROFESSIONAL GRIEFERS', TokenType.PRINT_STDERR],   // angry print to stderr
+      ['TWITTER RANT', TokenType.TWITTER_RANT],            // ALL CAPS PRINT
 
       // Variables
       ['I REMEMBER', TokenType.DECLARE],
+      ['LEMME TELL YOU ABOUT', TokenType.DECLARE],         // alias (rambling)
       ['IS NOW', TokenType.ASSIGN],
+      ['EQUALS', TokenType.ASSIGN],                        // boring alias
 
       // Arithmetic
       ['PUMP THIS', TokenType.INCREMENT],
       ['THERE MIGHT BE LESS', TokenType.DECREMENT],
+      ['THERE MIGHT BE COFFEE', TokenType.DECREMENT],      // alias (negative coffee)
       ['LAYER WITH', TokenType.ADD],
       ['MINUS', TokenType.SUBTRACT],
       ['SIDECHAIN', TokenType.MULTIPLY],
+      ['COMPRESS', TokenType.MULTIPLY],                    // alias
       ['SPLIT BY', TokenType.DIVIDE],
       ['MODULATE BY', TokenType.MODULO],
 
       // Comparison
       ['LOUDER THAN', TokenType.GREATER_THAN],
+      ['MORE FOLLOWERS THAN', TokenType.GREATER_THAN],     // alias (twitter)
       ['QUIETER THAN', TokenType.LESS_THAN],
+      ['LESS BEEF THAN', TokenType.LESS_THAN],             // alias (feuds)
       ['NOT SAME BPM AS', TokenType.NOT_EQUAL],
       ['SAME BPM AS', TokenType.EQUAL],
 
       // Conditionals
       ['WHATS THE FUSS', TokenType.IF],
+      ['U MAD ABOUT', TokenType.IF],                       // alias
       ['THE BEAT DROPS', TokenType.THEN],
       ['FML', TokenType.ELSE],
       ['WHATEVER', TokenType.ENDIF],
+      // Note: removed 'NICE MEME' as endif because it conflicts with 'NICE MEME FLIP'
 
       // While loops
       ['WHILE ONE IS LESS THAN TWO', TokenType.WHILE],
       ['KEEP GOING', TokenType.WHILE_START],
+      ['KEEP STREAMING', TokenType.WHILE_START],           // alias
       ['IM DONE', TokenType.WHILE_END],
+      ['IM BORED', TokenType.WHILE_END],                   // alias
 
       // For loops
       ['STROBE', TokenType.FOR],
       ['FLASH', TokenType.FOR_START],
       ['UNFLASH', TokenType.FOR_END],
       ['SKIP THIS', TokenType.CONTINUE],
+      ['NEXT TRACK', TokenType.CONTINUE],                  // alias
       ['LAWYER UP MICKEY', TokenType.BREAK],
+      ['CEASE AND DESIST', TokenType.BREAK],               // alias
 
       // Functions
       ['THIS IS THE HOOK', TokenType.FUNCTION_DEF],
+      ['HERES THE DROP', TokenType.FUNCTION_DEF],          // alias
       ['BREAKDOWN', TokenType.FUNCTION_START],
       ['BUILDUP COMPLETE', TokenType.FUNCTION_END],
       ['SEND BACK', TokenType.RETURN],
@@ -181,6 +229,7 @@ class Lexer {
 
       // Input
       ['COFFEE RUN WITH', TokenType.INPUT],
+      ['ASK THE CHAT', TokenType.INPUT],                   // alias (twitch)
 
       // Arrays
       ['SETLIST', TokenType.ARRAY_DEF],
@@ -190,16 +239,56 @@ class Lexer {
 
       // Error handling
       ['U MAD BRO', TokenType.THROW],
+      ['BLOCK EVERYONE', TokenType.THROW],                 // alias
       ['GHOSTS N STUFF', TokenType.TRY],
       ['CATCH THE GLITCH', TokenType.CATCH],
 
       // Special
       ['FAXING BERLIN', TokenType.SLEEP],
 
-      // Booleans and null - the best part
+      // === STUPID BUILT-IN FUNCTIONS ===
+      ['PROGRESSIVE BUILDUP', TokenType.PROGRESSIVE_BUILDUP],
+      ['WAIT FOR THE DROP', TokenType.WAIT_FOR_DROP],
+      ['CHIPOTLE RUN', TokenType.CHIPOTLE_RUN],
+      ['NICE MEME FLIP', TokenType.NICE_MEME],             // flip boolean
+      ['DJ MODE', TokenType.DJ_MODE],
+      ['GRAMMY SPEECH', TokenType.GRAMMY_SPEECH],
+      ['ROB FORD COUNT', TokenType.ROB_FORD],
+      ['FERRARI LAWSUIT', TokenType.FERRARI_LAWSUIT],
+      ['MASS BLOCK', TokenType.MASS_BLOCK],
+      ['TESTPILOT MODE', TokenType.TESTPILOT],
+      ['HR 8938 CEPHEI', TokenType.HR_8938_CEPHEI],
+      ['SEND TO SPACE', TokenType.HR_8938_CEPHEI],         // alias
+      ['HAXED BY ANONYMOUS', TokenType.HAXED],
+      ['MONOPHOBIA CHECK', TokenType.MONOPHOBIA],
+      ['THE VELDT FEELS', TokenType.THE_VELDT],
+      ['CTHULHU SLEEPS', TokenType.CTHULHU_SLEEPS],
+      ['PLAY ANIMALS', TokenType.ANIMALS],
+      ['AT 128 BPM', TokenType.AT_128_BPM],
+      ['RANDOM ALBUM TITLE', TokenType.RANDOM_ALBUM_TITLE],
+      ['COFFEE ADDICTION', TokenType.COFFEE_ADDICTION],
+
+      // Booleans and null - the best part (with many aliases)
       ['CUBE V3', TokenType.TRUE],
+      ['THE CUBE', TokenType.TRUE],                        // alias
+      ['TESTPILOT', TokenType.TRUE],                       // his real alias = true
+      ['PROGRESSIVE HOUSE', TokenType.TRUE],               // his genre = true
+      ['CHIPOTLE', TokenType.TRUE],                        // always yes to chipotle
+      ['COFFEE', TokenType.TRUE],                          // addiction
+      ['THE MAU5HEAD', TokenType.TRUE],                    // iconic = true
+      ['TORONTO', TokenType.TRUE],                         // home = true
+
       ['SKRILLEX', TokenType.FALSE],
+      ['MARSHMELLO', TokenType.FALSE],                     // "irrelevant"
+      ['BIG ROOM', TokenType.FALSE],                       // hates it
+      ['ANIMALS BY MARTIN GARRIX', TokenType.FALSE],       // maximum shade
+      ['BUTTON PUSHER', TokenType.FALSE],                  // what he calls bad DJs
+      ['MAINSTREAM', TokenType.FALSE],                     // sellout
+      ['DJ', TokenType.FALSE],                             // IM NOT A DJ
+
       ['MEOWINGTONS', TokenType.NULL],
+      ['PROFESSOR MEOWINGTONS', TokenType.NULL],           // alias (full name)
+      ['RIP MEOWINGTONS', TokenType.NULL],                 // alias (memorial)
 
       // String prefix
       ['TRACK', TokenType.TRACK],

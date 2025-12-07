@@ -23,6 +23,32 @@ GO TO BED JOEL
 | `SKRILLEX` | `false` | Self-explanatory |
 | `MEOWINGTONS` | `null` | RIP Professor Meowingtons PhD (2007-2023) |
 
+### Boolean Aliases (because one `true` is never enough)
+
+**Things that are `true`:**
+- `CUBE V3` — The stage setup
+- `THE CUBE` — Same thing, shorter
+- `TESTPILOT` — His techno alias
+- `PROGRESSIVE HOUSE` — His genre
+- `CHIPOTLE` — Always yes to Chipotle
+- `COFFEE` — Addiction
+- `THE MAU5HEAD` — Iconic
+- `TORONTO` — Home
+
+**Things that are `false`:**
+- `SKRILLEX` — Beef
+- `MARSHMELLO` — "Irrelevant"
+- `BIG ROOM` — Hates it
+- `ANIMALS BY MARTIN GARRIX` — Maximum shade
+- `BUTTON PUSHER` — What he calls bad DJs
+- `MAINSTREAM` — Sellout
+- `DJ` — IM NOT A DJ
+
+**Things that are `null`:**
+- `MEOWINGTONS` — RIP
+- `PROFESSOR MEOWINGTONS` — Full name
+- `RIP MEOWINGTONS` — Memorial
+
 ## Installation
 
 ```bash
@@ -47,14 +73,19 @@ ATTACH THE MAU5HEAD
 GO TO BED JOEL
 ```
 
-The ending is based on the /mu/ board meme where fans would spam "Go to bed Joel" during his 3 AM Twitter sessions.
+Alternative syntax (because everything needs aliases):
+- `PUT ON THE MAU5HEAD` — Same as above
+- `HELMET ON` — For the lazy
+- `JOEL GO TO SLEEP` — Alternative ending
+- `GOODNIGHT TORONTO` — For Canadians
 
 ### Variables
 
 ```
 I REMEMBER myVar              // Declare (song: "I Remember")
+LEMME TELL YOU ABOUT myVar    // Alternative (rambling mode)
 myVar IS NOW 42               // Assign a value
-myVar IS NOW TRACK "hello"    // Assign a string
+myVar EQUALS 42               // Boring alias
 ```
 
 ### Output
@@ -62,6 +93,8 @@ myVar IS NOW TRACK "hello"    // Assign a string
 ```
 RAISE YOUR WEAPON value       // Print with newline (song)
 SOME CHORDS value             // Print without newline (song)
+PROFESSIONAL GRIEFERS value   // Print to stderr (angry mode)
+TWITTER RANT value            // ALL CAPS PRINT (3 AM mode)
 ```
 
 ### Arithmetic
@@ -70,33 +103,25 @@ SOME CHORDS value             // Print without newline (song)
 |-----------|--------|---------|
 | Addition | `a LAYER WITH b` | `a + b` |
 | Subtraction | `a MINUS b` | `a - b` |
-| Multiplication | `SIDECHAIN a b` | `a * b` |
+| Multiplication | `SIDECHAIN a b` or `COMPRESS a b` | `a * b` |
 | Division | `SPLIT BY a b` | `a / b` |
 | Modulo | `MODULATE BY a b` | `a % b` |
 | Increment | `PUMP THIS var` | `var++` |
-| Decrement | `THERE MIGHT BE LESS var` | `var--` |
+| Decrement | `THERE MIGHT BE LESS var` or `THERE MIGHT BE COFFEE var` | `var--` |
 
 ### Comparison
 
-| Operation | Syntax |
-|-----------|--------|
-| Greater than | `a LOUDER THAN b` |
-| Less than | `a QUIETER THAN b` |
-| Equal | `a SAME BPM AS b` |
-| Not equal | `a NOT SAME BPM AS b` |
-
-### Logical Operators
-
-| Operation | Syntax |
-|-----------|--------|
-| AND | `ALSO` |
-| OR | `OTHERWISE` |
-| NOT | `SILENCE` |
+| Operation | Syntax | Alternative |
+|-----------|--------|-------------|
+| Greater than | `a LOUDER THAN b` | `a MORE FOLLOWERS THAN b` |
+| Less than | `a QUIETER THAN b` | `a LESS BEEF THAN b` |
+| Equal | `a SAME BPM AS b` | |
+| Not equal | `a NOT SAME BPM AS b` | |
 
 ### Conditionals
 
 ```
-WHATS THE FUSS condition
+WHATS THE FUSS condition      // or U MAD ABOUT condition
 THE BEAT DROPS
     // then branch
 FML
@@ -109,9 +134,9 @@ WHATEVER
 **While Loop:**
 ```
 WHILE ONE IS LESS THAN TWO condition    // Album: "while(1<2)"
-KEEP GOING
+KEEP GOING                              // or KEEP STREAMING
     // loop body
-IM DONE
+IM DONE                                 // or IM BORED
 ```
 
 **For Loop:**
@@ -124,8 +149,8 @@ UNFLASH
 
 **Loop Control:**
 ```
-SKIP THIS           // continue
-LAWYER UP MICKEY    // break (his response to Disney's lawsuit)
+SKIP THIS           // continue (or NEXT TRACK)
+LAWYER UP MICKEY    // break (or CEASE AND DESIST)
 ```
 
 ### Functions
@@ -141,31 +166,7 @@ BUILDUP COMPLETE
 DROP myFunction WITH arg1, arg2
 ```
 
-### Data Types
-
-```
-42                    // Number
-3.14                  // Float
-TRACK "hello"         // String
-CUBE V3               // true
-SKRILLEX              // false
-MEOWINGTONS           // null
-```
-
-### Arrays (Setlists)
-
-```
-SETLIST myList HOLDING 1, 2, 3      // Create array
-QUEUE UP myList 4                    // Push
-ENCORE myList                        // Pop
-TRACK NUMBER myList 0                // Access by index
-```
-
-### Input
-
-```
-COFFEE RUN WITH myVar    // Read user input (from his YouTube series)
-```
+Alternative: `HERES THE DROP myFunction` for function definition
 
 ### Error Handling
 
@@ -176,14 +177,68 @@ CATCH THE GLITCH errorVar         // catch block
     RAISE YOUR WEAPON errorVar
 WHATEVER
 
-U MAD BRO TRACK "error message"   // throw error (his catchphrase)
+U MAD BRO TRACK "error message"   // throw error
+BLOCK EVERYONE TRACK "bye"        // alternative throw
 ```
 
 ### Special
 
 ```
 FAXING BERLIN 1000    // Sleep for 1000ms (song)
+COFFEE RUN WITH var   // Read user input (or ASK THE CHAT var)
 ```
+
+---
+
+## Stupid Built-in Functions
+
+These functions exist because sometimes you need features that serve absolutely no purpose.
+
+### Time Wasters
+
+| Function | What It Does | Why |
+|----------|--------------|-----|
+| `PROGRESSIVE BUILDUP 500` | Prints "building tension..." repeatedly, then "(the drop never came)" | Prog house experience |
+| `WAIT FOR THE DROP` | Waits random time, never actually drops | Troll tracks |
+| `CHIPOTLE RUN 1000` | Takes forever, returns "out of guac" | His food obsession |
+| `CTHULHU SLEEPS 1000` | Sleep, but ominously | Song reference |
+
+### Opposite Day Functions
+
+| Function | What It Does | Why |
+|----------|--------------|-----|
+| `NICE MEME FLIP value` | Returns opposite boolean with sarcastic comment | His catchphrase |
+| `DJ MODE` | **Always crashes** with "IM NOT A DJ" | He says this a lot |
+
+### Completely Useless Functions
+
+| Function | What It Does | Why |
+|----------|--------------|-----|
+| `GRAMMY SPEECH` | Prints "We all hit play." and does nothing | The controversial quote |
+| `ROB FORD COUNT` | Returns "1 2 3 4" | Coffee Runs episode |
+| `FERRARI LAWSUIT value` | Strips all fun words from string | Purrari incident |
+| `MASS BLOCK array` | Removes random elements from array | Twitter rampage hobby |
+| `TESTPILOT MODE value` | Returns value/2, says "dark and minimal" | His techno alias |
+| `HR 8938 CEPHEI value` or `SEND TO SPACE value` | Evaluates then discards (prints to space) | Song about a star |
+| `HAXED BY ANONYMOUS` | 1% chance to crash your program | Early hacker vibes |
+| `MONOPHOBIA CHECK` | Crashes if only 1 variable exists | Fear of being alone |
+| `THE VELDT FEELS value` | Adds emotional suffix to string | The feels |
+| `PLAY ANIMALS` | Always returns "ANIMALS" | Martin Garrix diss |
+| `RANDOM ALBUM TITLE` | Returns random deadmau5 album name | Self-explanatory |
+| `COFFEE ADDICTION value` | Multiplies by 420 | Caffeine math |
+
+### The Inescapable Loop
+
+```
+AT 128 BPM beat
+FLASH
+    // This runs EXACTLY 128 times
+    // LAWYER UP MICKEY is ignored
+    // You cannot escape the BPM
+UNFLASH
+```
+
+---
 
 ## Examples
 
@@ -220,29 +275,42 @@ UNFLASH
 GO TO BED JOEL
 ```
 
-### Fibonacci
+### Twitter Beef Simulator
 
 ```
 ATTACH THE MAU5HEAD
 
-THIS IS THE HOOK fibonacci TAKING n
-BREAKDOWN
-    WHATS THE FUSS n QUIETER THAN 2
-    THE BEAT DROPS
-        SEND BACK n
-    WHATEVER
+// Rate things using our boolean system
+SOME CHORDS TRACK "CUBE V3: "
+RAISE YOUR WEAPON CUBE V3
 
-    I REMEMBER a
-    I REMEMBER b
-    a IS NOW DROP fibonacci WITH n MINUS 1
-    b IS NOW DROP fibonacci WITH n MINUS 2
-    SEND BACK a LAYER WITH b
-BUILDUP COMPLETE
+SOME CHORDS TRACK "SKRILLEX: "
+RAISE YOUR WEAPON SKRILLEX
 
-STROBE i FROM 0 TO 10
-FLASH
-    RAISE YOUR WEAPON DROP fibonacci WITH i
-UNFLASH
+SOME CHORDS TRACK "MARSHMELLO: "
+RAISE YOUR WEAPON MARSHMELLO
+
+// Twitter rant mode
+TWITTER RANT TRACK "why does everyone think edm is just button pushing"
+TWITTER RANT TRACK "i spent 260 tons on a cube and people still complain"
+
+// Mass block your enemies
+SETLIST enemies HOLDING TRACK "hater1", TRACK "hater2"
+MASS BLOCK enemies
+
+GO TO BED JOEL
+```
+
+### The Drop That Never Comes
+
+```
+ATTACH THE MAU5HEAD
+
+RAISE YOUR WEAPON TRACK "The track begins..."
+PROGRESSIVE BUILDUP 500
+RAISE YOUR WEAPON TRACK "Here it comes..."
+WAIT FOR THE DROP
+RAISE YOUR WEAPON TRACK "The journey was the destination."
 
 GO TO BED JOEL
 ```
@@ -253,10 +321,12 @@ GO TO BED JOEL
 node src/index.js examples/hello.mau5
 node src/index.js examples/fizzbuzz.mau5
 node src/index.js examples/fibonacci.mau5
-node src/index.js examples/purrari.mau5
 node src/index.js examples/twitter_beef.mau5
-node src/index.js examples/coffee.mau5
-node src/index.js examples/meowingtons.mau5
+node src/index.js examples/stupid_builtins.mau5
+node src/index.js examples/aliases.mau5
+node src/index.js examples/128bpm.mau5
+node src/index.js examples/drop_tease.mau5
+node src/index.js examples/dj_mode_crash.mau5   # Guaranteed to crash
 ```
 
 ## Complete Keyword Reference
@@ -269,61 +339,53 @@ node src/index.js examples/meowingtons.mau5
 | `IS NOW` | `=` | |
 | `RAISE YOUR WEAPON` | `print()` | Song |
 | `SOME CHORDS` | `print()` no newline | Song |
+| `PROFESSIONAL GRIEFERS` | `print()` to stderr | Song |
+| `TWITTER RANT` | `print()` ALL CAPS | 3 AM behavior |
 | `LAYER WITH` | `+` | Audio layering |
-| `MINUS` | `-` | |
 | `SIDECHAIN` | `*` | Production technique |
-| `SPLIT BY` | `/` | |
-| `MODULATE BY` | `%` | Modular synth term |
-| `PUMP THIS` | `++` | |
-| `THERE MIGHT BE LESS` | `--` | Song reference |
-| `LOUDER THAN` | `>` | |
-| `QUIETER THAN` | `<` | |
-| `SAME BPM AS` | `==` | |
 | `WHATS THE FUSS` | `if` | |
 | `THE BEAT DROPS` | `then` / `{` | |
 | `FML` | `else` | Song |
 | `WHATEVER` | `endif` / `}` | |
 | `WHILE ONE IS LESS THAN TWO` | `while` | Album: "while(1<2)" |
-| `KEEP GOING` | loop start | |
-| `IM DONE` | loop end | |
-| `STROBE` | `for` | Song |
-| `FLASH` / `UNFLASH` | loop body | |
-| `SKIP THIS` | `continue` | |
+| `AT 128 BPM` | unbreakable for loop | Standard EDM tempo |
 | `LAWYER UP MICKEY` | `break` | Disney lawsuit |
-| `THIS IS THE HOOK` | `function` | |
-| `BREAKDOWN` | function body start | Song structure |
-| `BUILDUP COMPLETE` | function body end | Song structure |
 | `DROP` | function call | |
-| `SEND BACK` | `return` | |
-| `COFFEE RUN WITH` | `input()` | YouTube series |
-| `CUBE V3` | `true` | His stage setup |
-| `SKRILLEX` | `false` | |
-| `MEOWINGTONS` | `null` | His cat |
-| `GHOSTS N STUFF` | `try` | Song |
-| `CATCH THE GLITCH` | `catch` | |
+| `CUBE V3` | `true` | Stage setup |
+| `SKRILLEX` | `false` | Beef |
+| `MEOWINGTONS` | `null` | His cat (RIP) |
 | `U MAD BRO` | `throw` | Catchphrase |
-| `FAXING BERLIN` | `sleep()` | Song |
-| `SETLIST` | array | |
-| `QUEUE UP` | array push | |
-| `ENCORE` | array pop | |
+| `GRAMMY SPEECH` | print quote + nothing | "We all hit play" |
+| `DJ MODE` | crash | IM NOT A DJ |
 
 ## Context for the Confused
 
-- **CUBE V3** — His stage setup. 260 tons, 600+ LED panels. Cost a fortune. Hence, `true`.
+- **CUBE V3** — His stage setup. 260 tons, 600+ LED panels. Cost more than your house. Hence, `true`.
 - **SKRILLEX** — They had beef. Hence, `false`.
 - **MEOWINGTONS** — Professor Meowingtons PhD, his cat (2007-2023). Hence, `null`.
-- **LAWYER UP MICKEY** — What Joel said when Disney tried to block his mau5head trademark because it looked too much like Mickey Mouse ears. (He won.)
-- **GO TO BED JOEL** — /mu/ users would spam this during his late night posting sessions. He did not go to bed.
-- **WHILE ONE IS LESS THAN TWO** — His 2014 album was literally called `while(1<2)`. Yes, he named an album after an infinite loop.
-- **Coffee Runs** — His YouTube series where he drives people around in sports cars and roasts them. Guests have included Pharrell and Toronto's former crack-smoking mayor Rob Ford.
-- **U MAD BRO** — His catchphrase. He wore it on a shirt to the Grammys. The shirt also had Skrillex's phone number on it.
+- **LAWYER UP MICKEY** — What Joel said when Disney tried to block his mau5head trademark. He won.
+- **GO TO BED JOEL** — /mu/ users would spam this during his 3 AM posting sessions. He did not go to bed.
+- **WHILE ONE IS LESS THAN TWO** — His 2014 album was literally called `while(1<2)`.
+- **Coffee Runs** — YouTube series where he drives people in sports cars and roasts them. Featured Toronto's former crack-smoking mayor Rob Ford.
+- **U MAD BRO** — His catchphrase. He wore it on a Grammys shirt with Skrillex's phone number.
+- **AT 128 BPM** — Standard EDM tempo. Non-negotiable. The loop cannot be broken.
+- **TESTPILOT** — His techno alias. Hence the "dark and minimal" output.
+- **HR 8938 CEPHEI** — A real star. He wrote a song about it. Values sent there go to the void of space.
+
+## Things That Made It Into The Language But Shouldn't Have
+
+- `DJ MODE` — Always crashes. Because IM NOT A DJ.
+- `MASS BLOCK` — Randomly removes array elements. Like his Twitter.
+- `CHIPOTLE RUN` — Takes forever, returns "out of guac". Accurate simulation.
+- `FERRARI LAWSUIT` — Removes all fun from strings. Thanks, Ferrari legal.
+- `HAXED BY ANONYMOUS` — 1% crash chance. You feel lucky?
 
 ## Things That Didn't Make It Into The Language
 
 - `PURRARI` — His Ferrari 458 wrapped in Nyan Cat. Ferrari sued him.
 - `PRESS BUTTON RECEIVE BACON` — Too long.
-- `IM NOT A DJ` — He says this a lot. Nobody believes him.
-- `TORONTO TRAFFIC` — He complains about this constantly on stream. Considered for `throw`.
+- `TORONTO TRAFFIC` — He complains about this constantly. Considered for `throw`.
+- `AVICII TRIBUTE` — Too sad.
 
 ## File Extension
 
@@ -336,3 +398,5 @@ MIT
 ---
 
 Not affiliated with Joel Zimmerman or mau5trap. He would probably mass-block everyone involved in this project on Twitter.
+
+If you're reading this Joel: Sorry. Also, hire us to build the Cube v4 software.
